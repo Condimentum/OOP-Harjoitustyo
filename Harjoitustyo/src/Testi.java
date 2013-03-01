@@ -8,6 +8,7 @@ public class Testi {
 		String Janne = "Syöb";
 		int[] syobtaulukko;
 		String[] ES;
+		System.out.println(Janne);
 
 	}
 
