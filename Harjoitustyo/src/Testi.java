@@ -7,6 +7,7 @@ public class Testi {
 	public static void main(String[] args) {
 		String Janne = "Syöb";
 		int[] syobtaulukko;
+		String[] ES;
 
 	}
 
