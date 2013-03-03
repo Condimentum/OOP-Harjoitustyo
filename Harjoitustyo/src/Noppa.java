@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Noppa {
-	private int value;
+	int value;
 	Random rnd = new Random();
 	
 	public Noppa(){
