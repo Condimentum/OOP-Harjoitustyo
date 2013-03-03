@@ -5,6 +5,9 @@ public class Jatsikasi {
 	public Jatsikasi(){
 		nopat = new Noppa[5];
 	}
+	public Jatsikasi(Jatsikasi k){
+		nopat = k.getNopat();
+	}
 	/**
 	 * heittää lukitsemattomat nopat
 	 * @param lukitut lukittujen noppien indeksit nousevassa järjestyksessä
@@ -19,5 +22,8 @@ public class Jatsikasi {
 				nopat[i].heita();
 			}
 		}
+	}
+	public Noppa[] getNopat(){
+		return nopat;
 	}
 }
