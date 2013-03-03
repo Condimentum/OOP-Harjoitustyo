@@ -9,9 +9,149 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	}
 	public Yhdistelma(Jatsikasi k){
 		super(k);
-		pisteet=0;
+		pisteet = 0;
 		nimi = null;
 		Arrays.sort(nopat); // Järjestetään nopat nousevaan järjestykseen
+	}
+	public Yhdistelma(Noppa[] n, int a, Jatsiyhdistelma b){
+		super(n);
+		pisteet = a;
+		nimi = b;
+		Arrays.sort(nopat); // Järjestetään nopat nousevaan järjestykseen
+	}
+	/**
+	 * Etsii mahdolliset yhdistelmät ja niiden pisteet
+	 * @return mahdolliset yhdistelmät
+	 */
+	public ArrayList<Yhdistelma> getYhdistelmat(){
+		ArrayList<Yhdistelma> a = new ArrayList<Yhdistelma>();
+		int points=0;
+		if(ykkoset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==1){
+					points++;
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.YKKOSET));
+			points=0;
+		}
+		if(kakkoset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==2){
+					points++;
+				}
+			}
+			points = points*2;
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.KAKKOSET));
+			points=0;
+		}
+		if(kolmoset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==2){
+					points++;
+				}
+			}
+			points = points*3;
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.KOLMOSET));
+			points=0;
+		}
+		if(neloset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==2){
+					points++;
+				}
+			}
+			points = points*4;
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.NELOSET));
+			points=0;
+		}
+		if(viitoset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==2){
+					points++;
+				}
+			}
+			points = points*5;
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.VIITOSET));
+			points=0;
+		}
+		if(kuutoset()){
+			for(int i=0; i<5; i++){
+				if (nopat[i].getValue()==2){
+					points++;
+				}
+			}
+			points = points*6;
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.KUUTOSET));
+			points=0;
+		}
+		if(kaksiParia()){
+			int ind=0;
+			int tmpPoints;
+			for(int i=0; i<2; i++){
+				if(nopat[i].getValue()==nopat[i+1].getValue()){
+					ind = i+2;
+					points = nopat[i].getValue() + nopat[i+1].getValue();
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.PARI)); // add ensimmäinen pari
+			tmpPoints=points;
+			points=0;
+			for(int i=ind; i<5; i++){
+				if(nopat[i].getValue()==nopat[i+1].getValue()){
+					ind = i+2;
+					points = nopat[i].getValue() + nopat[i+1].getValue();
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.PARI)); // add toinen pari
+			tmpPoints=tmpPoints+points;
+			points=0;
+			a.add(new Yhdistelma(nopat, tmpPoints, Jatsiyhdistelma.KAKSI_PARIA)); // add kaksi paria
+		}
+		else if(pari() || kolmeSamaa() || neljaSamaa()){ // Löytyy vain yksi pari
+			for(int i=0; i<4; i++){
+				if (nopat[i].getValue()==nopat[i+1].getValue()){
+					points = nopat[i].getValue() + nopat[i+1].getValue();
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.PARI));
+			points=0;
+		}
+		if(kolmeSamaa() || neljaSamaa()){
+			for(int i=0; i<3; i++){
+				if (nopat[i].getValue()==nopat[i+1].getValue() && nopat[i].getValue()==nopat[i+2].getValue()){
+					points = nopat[i].getValue() + nopat[i+1].getValue() + nopat[i+2].getValue();
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.KOLME_SAMAA));
+			points=0;
+		}
+		if(neljaSamaa()){
+			for(int i=0; i<2; i++){
+				if (nopat[i].getValue()==nopat[i+1].getValue() && nopat[i].getValue()==nopat[i+2].getValue() && nopat[i].getValue()==nopat[i+3].getValue()){
+					points = nopat[i].getValue() + nopat[i+1].getValue() + nopat[i+2].getValue() + nopat[i+3].getValue();
+				}
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.NELJA_SAMAA));
+			points=0;
+		}
+		if(pikkusuora()){
+			a.add(new Yhdistelma(nopat, 15, Jatsiyhdistelma.PIKKUSUORA));
+		}
+		if(isosuora()){
+			a.add(new Yhdistelma(nopat, 20, Jatsiyhdistelma.ISOSUORA));
+		}
+		if(tayskasi()){
+			for(int i=0; i<5; i++){
+				points=points+nopat[i].getValue();
+			}
+			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.TAYSKASI));
+			points=0;
+		}
+		if(yatzy()){
+			a.add(new Yhdistelma(nopat, 50, Jatsiyhdistelma.YATZY));
+		}
+		return a;
 	}
 	/**
 	 * Testataan, mitä yhdistelmiä löytyy
@@ -54,7 +194,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		return false;
 	}
-	public boolean kaksiSamaa(){
+	public boolean pari(){
 		if(kolmeSamaa()||neljaSamaa()){
 			return false;
 		}
@@ -114,7 +254,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		return true;
 	}
 	public boolean tayskasi(){
-		if(kaksiSamaa()&&kolmeSamaa()){
+		if(pari()&&kolmeSamaa()){
 			return true;
 		}
 		return false;

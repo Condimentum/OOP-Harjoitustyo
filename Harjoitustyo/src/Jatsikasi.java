@@ -5,8 +5,11 @@ public class Jatsikasi {
 	public Jatsikasi(){
 		nopat = new Noppa[5];
 	}
-	public Jatsikasi(Jatsikasi k){
+	protected Jatsikasi(Jatsikasi k){
 		nopat = k.getNopat();
+	}
+	protected Jatsikasi(Noppa[] n){
+		nopat=n;
 	}
 	/**
 	 * heittää lukitsemattomat nopat
