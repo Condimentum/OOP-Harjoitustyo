@@ -1,6 +1,7 @@
 import java.util.Random;
 public class Noppa {
 	private int value;
+	Random rnd = new Random();
 	
 	public Noppa(){
 		value=1;
@@ -9,7 +10,6 @@ public class Noppa {
 		return value;
 	}
 	public void heita(){
-		Random rnd = new Random();
 		value=rnd.nextInt(6)+1; //arpoo numeron 1-6
 	}
 }
