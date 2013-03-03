@@ -11,8 +11,13 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		super(k);
 		pisteet=0;
 		nimi = null;
-		Arrays.sort(nopat);
+		Arrays.sort(nopat); // Järjestetään nopat nousevaan järjestykseen
 	}
+	/**
+	 * Testataan, mitä yhdistelmiä löytyy
+	 * HUOM! jos löytyy kolme samaa tai neljä samaa, kaksiSamaa returns false
+	 * @return true=löytyi, false=ei löytynyt yhdistelmää
+	 */
 	public boolean ykkoset(){
 		if(nopat[0].getValue()==1){
 			return true;
@@ -71,7 +76,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		if(count==2){
 			return true;
 		}
-		return false; //else
+		return false;
 	}
 	public boolean kolmeSamaa(){
 		if(neljaSamaa()){
@@ -122,6 +127,10 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		return true;
 	}
+	
+	/**
+	 * Getterit ja setterit
+	 */
 	public int getPisteet(){
 		return pisteet;
 	}
@@ -134,9 +143,8 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	public void setNimi(Jatsiyhdistelma y){
 		nimi = y;
 	}
-	@Override
+	
 	public int compareTo(Yhdistelma o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return pisteet-o.getPisteet();
 	}
 }
