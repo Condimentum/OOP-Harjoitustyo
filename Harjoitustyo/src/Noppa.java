@@ -18,7 +18,7 @@ public class Noppa implements Comparable<Noppa> {
 		lukitus = b;
 	}
 	public void heita(){
-		if(!getLukitus()){
+		if(!lukitus){
 			value=rnd.nextInt(6)+1; //arpoo numeron 1-6
 		}
 	}
