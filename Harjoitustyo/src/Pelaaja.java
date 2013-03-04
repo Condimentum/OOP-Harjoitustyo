@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 public class Pelaaja {
 	String nimi;
-	HashMap<Jatsiyhdistelma, Yhdistelma> yhdistelmat;
+	HashMap<Jatsiyhdistelma, Integer> yhdistelmat;
 	Jatsikasi kasi;
 	
 	public Pelaaja(String n){
@@ -39,7 +39,7 @@ public class Pelaaja {
 	 * @param avain Jatsiyhdistelma, jonka kohdalta haetaan tallennettu yhdistelmä
 	 * @return Yhdistelma
 	 */
-	public Yhdistelma getYhdistelma(Jatsiyhdistelma avain){
+	public Integer getPisteet(Jatsiyhdistelma avain){
 		return yhdistelmat.get(avain);
 	}
 	/**
@@ -47,7 +47,7 @@ public class Pelaaja {
 	 * @param avain 
 	 * @param arvo
 	 */
-	public void setYhdistelma(Yhdistelma y){
+	public void setPisteet(Yhdistelma y){
 		yhdistelmat.put(y.getNimi(), y.getPisteet());
 	}
 
