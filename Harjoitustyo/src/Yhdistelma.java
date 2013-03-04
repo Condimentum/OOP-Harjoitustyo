@@ -4,9 +4,6 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	private int pisteet;
 	private Jatsiyhdistelma nimi;
 	
-	public enum Jatsiyhdistelma{
-		YKKOSET, KAKKOSET, KOLMOSET, NELOSET, VIITOSET, KUUTOSET, PARI, KAKSI_PARIA, KOLME_SAMAA, NELJA_SAMAA, PIKKUSUORA, ISOSUORA, TAYSKASI, SATTUMA, YATZY
-	}
 	public Yhdistelma(Jatsikasi k){
 		super(k);
 		pisteet = 0;
