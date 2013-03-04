@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.ArrayList;
 public class Pelaaja {
 	String nimi;
 	HashMap<Jatsiyhdistelma, Integer> yhdistelmat;
@@ -25,8 +24,8 @@ public class Pelaaja {
 		kasi = new Jatsikasi();
 	}
 	
-	public Noppa[] heita(ArrayList<Integer> lukitut){
-		return kasi.heita(lukitut);
+	public Noppa[] heita(){
+		return kasi.heita();
 	}
 	public String getNimi(){
 		return nimi;

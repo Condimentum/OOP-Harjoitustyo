@@ -15,13 +15,9 @@ public class Jatsikasi {
 	 * heittää lukitsemattomat nopat
 	 * @param lukitut lukittujen noppien indeksit nousevassa järjestyksessä
 	 */
-	public Noppa[] heita(ArrayList<Integer> lukitut){
+	public Noppa[] heita(){
 		for(int i=0; i<5; i++){
-			if (lukitut.get(0)==i){ // Jos noppa on lukittu, ei heitetä
-				lukitut.remove(0); // Poistetaan lukitus
-				continue; // Siirrytään seuraavaan noppaan
-			}
-			else{
+			if (!nopat[i].getLukitus()){ // Jos noppaa ei ole lukittu, heitetään
 				nopat[i].heita();
 			}
 		}
