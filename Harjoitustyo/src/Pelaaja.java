@@ -33,12 +33,15 @@ public class Pelaaja {
 	public void setNimi(String n){
 		nimi=n;
 	}
+	public HashMap<Jatsiyhdistelma, Integer> getYhdistelmat(){
+		return yhdistelmat;
+	}
 	/**
 	 * 
 	 * @param avain Jatsiyhdistelma, jonka kohdalta haetaan tallennettu yhdistelmä
 	 * @return Yhdistelma
 	 */
-	public Integer getPisteet(Jatsiyhdistelma avain){
+	public int getPisteet(Jatsiyhdistelma avain){
 		return yhdistelmat.get(avain);
 	}
 	/**
