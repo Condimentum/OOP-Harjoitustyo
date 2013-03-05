@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.*;
 public class Jatsipeli implements Serializable {
 	private ArrayList<Pelaaja> pelaajat;
 	private FileOutputStream f_out;

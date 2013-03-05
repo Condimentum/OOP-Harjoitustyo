@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.*;
 public class Noppa implements Comparable<Noppa> {
 	private int value;
 	private boolean lukitus;

@@ -1,4 +1,4 @@
-import java.util.*;
+
 public class Jatsikasi {
 	protected Noppa[] nopat;
 	
