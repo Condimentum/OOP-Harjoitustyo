@@ -65,7 +65,7 @@ public class Pelaaja {
 	 */
 	public int getPisteet(Jatsiyhdistelma avain) throws NoPointsException{
 		if(yhdistelmat.get(avain)!=null){
-			return (Integer)yhdistelmat.get(avain);
+			return yhdistelmat.get(avain);
 		}
 		else{
 			throw new NoPointsException("value==null");

@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.*;
 import java.util.ArrayList;
 public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	private int pisteet;
