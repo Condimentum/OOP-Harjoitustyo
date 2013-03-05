@@ -14,13 +14,19 @@ public class Noppa implements Comparable<Noppa> {
 	public boolean getLukitus(){
 		return lukitus;
 	}
-	public void setLukitus(boolean b){
-		lukitus = b;
+	public void lock(){
+		lukitus = !lukitus;
+	}
+	public void unlock(){
+		lukitus=false;
 	}
 	public void heita(){
 		if(!lukitus){
 			value=rnd.nextInt(6)+1; //arpoo numeron 1-6
 		}
+	}
+	public void print(){
+		System.out.println(value);
 	}
 	public int compareTo(Noppa arg0) {
 		return value-arg0.getValue();

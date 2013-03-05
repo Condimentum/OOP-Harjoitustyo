@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 public class Jatsikasi {
 	protected Noppa[] nopat;
 	
@@ -15,15 +15,27 @@ public class Jatsikasi {
 	 * heittää lukitsemattomat nopat
 	 * @param lukitut lukittujen noppien indeksit nousevassa järjestyksessä
 	 */
-	public Noppa[] heita(){
+	public void heita(){
 		for(int i=0; i<5; i++){
 			if (!nopat[i].getLukitus()){ // Jos noppaa ei ole lukittu, heitetään
 				nopat[i].heita();
 			}
 		}
-		return nopat;
+	}
+	public void print(){
+		for(int i=0; i<5; i++){
+			nopat[i].print();
+		}
 	}
 	public Noppa[] getNopat(){
 		return nopat;
+	}
+	public void lock(int ind){
+		nopat[ind].lock();
+	}
+	public void unlock(){
+		for(int i=0; i<5; i++){
+			nopat[i].unlock();
+		}
 	}
 }

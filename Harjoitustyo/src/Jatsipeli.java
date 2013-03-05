@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 public class Jatsipeli implements Serializable {
 	private ArrayList<Pelaaja> pelaajat;
 	private FileOutputStream f_out;
@@ -84,6 +83,20 @@ public class Jatsipeli implements Serializable {
 	public static void main(String[] args) {
 		Scanner reader = new Scanner(System.in);
 		Jatsipeli p = new Jatsipeli();
+		p.addPelaaja(new Pelaaja("Janne"));
+		p.addPelaaja(new Pelaaja("Kuukupööpötin"));
+		int heitot = 3;
+		String lukitut;
+		for(int i=heitot; i>0; i--){
+			p.getPelaaja(0).heita();
+			p.getPelaaja(0).printKasi();
+			if(i!=0){
+				lukitut=reader.nextLine();
+				for(int j=0; j<lukitut.length(); j++){
+					p.getPelaaja(0).lock(Character.getNumericValue(lukitut.charAt(j)));
+				}
+			}
+		}
 		
 
 	}
