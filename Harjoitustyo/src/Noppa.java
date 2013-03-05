@@ -1,7 +1,7 @@
 import java.util.Random;
 public class Noppa implements Comparable<Noppa> {
-	int value;
-	boolean lukitus;
+	private int value;
+	private boolean lukitus;
 	Random rnd = new Random();
 	
 	public Noppa(){

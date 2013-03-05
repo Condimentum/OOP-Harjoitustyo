@@ -1,10 +1,10 @@
 import java.util.EnumMap;
 import java.util.ArrayList;
 public class Pelaaja {
-	String nimi;
-	EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
-	ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
-	Jatsikasi kasi;
+	private String nimi;
+	private EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
+	private ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
+	private Jatsikasi kasi;
 	
 	public Pelaaja(String n){
 		nimi = n;
