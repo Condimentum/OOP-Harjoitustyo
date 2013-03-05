@@ -4,11 +4,14 @@ public class Jatsikasi {
 	
 	public Jatsikasi(){
 		nopat = new Noppa[5];
+		for(int i=0; i<5; i++){
+			nopat[i]=new Noppa();
+		}
 	}
-	protected Jatsikasi(Jatsikasi k){
+	public Jatsikasi(Jatsikasi k){
 		nopat = k.getNopat();
 	}
-	protected Jatsikasi(Noppa[] n){
+	public Jatsikasi(Noppa[] n){
 		nopat=n;
 	}
 	/**
@@ -16,8 +19,8 @@ public class Jatsikasi {
 	 * @param lukitut lukittujen noppien indeksit nousevassa järjestyksessä
 	 */
 	public void heita(){
-		for(int i=0; i<5; i++){
-			if (!nopat[i].getLukitus()){ // Jos noppaa ei ole lukittu, heitetään
+		for(int i=0; i<nopat.length; i++){
+			if (nopat[i].getLukitus()==false){ // Jos noppaa ei ole lukittu, heitetään
 				nopat[i].heita();
 			}
 		}

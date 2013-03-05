@@ -26,7 +26,7 @@ public class Noppa implements Comparable<Noppa> {
 		}
 	}
 	public void print(){
-		System.out.println(value);
+		System.out.print(value);
 	}
 	public int compareTo(Noppa arg0) {
 		return value-arg0.getValue();
