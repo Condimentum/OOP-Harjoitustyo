@@ -49,7 +49,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		if(kolmoset()){
 			for(int i=0; i<5; i++){
-				if (nopat[i].getValue()==2){
+				if (nopat[i].getValue()==3){
 					points++;
 				}
 			}
@@ -59,7 +59,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		if(neloset()){
 			for(int i=0; i<5; i++){
-				if (nopat[i].getValue()==2){
+				if (nopat[i].getValue()==4){
 					points++;
 				}
 			}
@@ -69,7 +69,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		if(viitoset()){
 			for(int i=0; i<5; i++){
-				if (nopat[i].getValue()==2){
+				if (nopat[i].getValue()==5){
 					points++;
 				}
 			}
@@ -79,7 +79,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		}
 		if(kuutoset()){
 			for(int i=0; i<5; i++){
-				if (nopat[i].getValue()==2){
+				if (nopat[i].getValue()==6){
 					points++;
 				}
 			}
@@ -94,12 +94,13 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 				if(nopat[i].getValue()==nopat[i+1].getValue()){
 					ind = i+2;
 					points = nopat[i].getValue() + nopat[i+1].getValue();
+					break;
 				}
 			}
 			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.PARI)); // add ensimmäinen pari
 			tmpPoints=points;
 			points=0;
-			for(int i=ind; i<5; i++){
+			for(int i=ind; i<4; i++){
 				if(nopat[i].getValue()==nopat[i+1].getValue()){
 					ind = i+2;
 					points = nopat[i].getValue() + nopat[i+1].getValue();
@@ -167,39 +168,46 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		return false;
 	}
 	public boolean kakkoset(){
-		if(nopat[0].getValue()==2){
-			return true;
+		for(int i=0; i<5; i++){
+			if(nopat[i].getValue()==2){
+				return true;
+			}
 		}
 		return false;
 	}
 	public boolean kolmoset(){
-		if(nopat[0].getValue()==3){
-			return true;
+		for(int i=0; i<5; i++){
+			if(nopat[i].getValue()==3){
+				return true;
+			}
 		}
 		return false;
 	}
 	public boolean neloset(){
-		if(nopat[0].getValue()==4){
-			return true;
+		for(int i=0; i<5; i++){
+			if(nopat[i].getValue()==4){
+				return true;
+			}
 		}
 		return false;
 	}
 	public boolean viitoset(){
-		if(nopat[0].getValue()==5){
-			return true;
+		for(int i=0; i<5; i++){
+			if(nopat[i].getValue()==5){
+				return true;
+			}
 		}
 		return false;
 	}
 	public boolean kuutoset(){
-		if(nopat[0].getValue()==6){
-			return true;
+		for(int i=0; i<5; i++){
+			if(nopat[i].getValue()==6){
+				return true;
+			}
 		}
 		return false;
 	}
 	public boolean pari(){
-		if(kolmeSamaa()||neljaSamaa()){
-			return false;
-		}
 		for(int i=0; i<4; i++){
 			if(nopat[i].getValue()==nopat[i+1].getValue()){
 				return true;
@@ -221,11 +229,8 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		return false;
 	}
 	public boolean kolmeSamaa(){
-		if(neljaSamaa()){
-			return false;
-		}
 		for(int i=0; i<3; i++){
-			if(nopat[i].getValue()==nopat[i+1].getValue() && nopat[i].getValue()==nopat[i+2].getValue()){
+			if(nopat[i].getValue()==nopat[i+2].getValue()){
 				return true;
 			}
 		}
@@ -233,7 +238,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	}
 	public boolean neljaSamaa(){
 		for(int i=0; i<2; i++){
-			if(nopat[i].getValue()==nopat[i+1].getValue()&&nopat[i].getValue()==nopat[i+2].getValue()&&nopat[i].getValue()==nopat[i+3].getValue()){
+			if(nopat[i].getValue()==nopat[i+3].getValue()){
 				return true;
 			}
 		}
@@ -256,7 +261,10 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 		return true;
 	}
 	public boolean tayskasi(){
-		if(pari()&&kolmeSamaa()){
+		if(nopat[0].getValue()==nopat[1].getValue()&&nopat[2].getValue()==nopat[4].getValue()){
+			return true;
+		}
+		if(nopat[0].getValue()==nopat[2].getValue()&&nopat[3].getValue()==nopat[4].getValue()){
 			return true;
 		}
 		return false;

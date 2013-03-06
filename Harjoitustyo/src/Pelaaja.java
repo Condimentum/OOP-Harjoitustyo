@@ -8,27 +8,12 @@ import java.util.ArrayList;
 public class Pelaaja {
 	private String nimi;
 	private EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
-	private ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
+	static ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
 	private Jatsikasi kasi;
 	
 	public Pelaaja(String n){
 		nimi = n;
 		yhdistelmat = new EnumMap<Jatsiyhdistelma, Integer>(Jatsiyhdistelma.class);
-		yhdistelmat.put(Jatsiyhdistelma.YKKOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.KAKKOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.KOLMOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.NELOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.VIITOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.KUUTOSET, null);
-		yhdistelmat.put(Jatsiyhdistelma.PARI, null);
-		yhdistelmat.put(Jatsiyhdistelma.KAKSI_PARIA, null);
-		yhdistelmat.put(Jatsiyhdistelma.KOLME_SAMAA, null);
-		yhdistelmat.put(Jatsiyhdistelma.NELJA_SAMAA, null);
-		yhdistelmat.put(Jatsiyhdistelma.PIKKUSUORA, null);
-		yhdistelmat.put(Jatsiyhdistelma.ISOSUORA, null);
-		yhdistelmat.put(Jatsiyhdistelma.TAYSKASI, null);
-		yhdistelmat.put(Jatsiyhdistelma.SATTUMA, null);
-		yhdistelmat.put(Jatsiyhdistelma.YATZY, null);
 		jatsiyhdistelmat = new ArrayList<Jatsiyhdistelma>();
 		jatsiyhdistelmat.add(Jatsiyhdistelma.YKKOSET);
 		jatsiyhdistelmat.add(Jatsiyhdistelma.KAKKOSET);
@@ -53,6 +38,26 @@ public class Pelaaja {
 	
 	public void heita(){
 		kasi.heita();
+	}
+	public void printYhdistelmat(){
+		Yhdistelma y = new Yhdistelma(kasi);
+		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat();
+		for(int i=0; i<yhdistelmat.size(); i++){
+			if(this.yhdistelmat.get(yhdistelmat.get(i).getNimi())==null){
+				System.out.println(yhdistelmat.get(i).getNimi().name()+": "+yhdistelmat.get(i).getPisteet());
+			}
+		}
+	}
+	public ArrayList<Yhdistelma> mahdollisetYhdistelmat(){
+		Yhdistelma y = new Yhdistelma(kasi);
+		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat();
+		ArrayList<Yhdistelma> toReturn = new ArrayList<Yhdistelma>();
+		for(int i=0; i<yhdistelmat.size(); i++){
+			if(this.yhdistelmat.get(yhdistelmat.get(i).getNimi())==null){
+				toReturn.add(yhdistelmat.get(i));
+			}
+		}
+		return toReturn;
 	}
 	public String getNimi(){
 		return nimi;

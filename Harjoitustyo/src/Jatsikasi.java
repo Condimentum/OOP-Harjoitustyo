@@ -35,6 +35,7 @@ public class Jatsikasi {
 		for(int i=0; i<5; i++){
 			nopat[i].print();
 		}
+		System.out.println();
 	}
 	public Noppa[] getNopat(){
 		return nopat;
