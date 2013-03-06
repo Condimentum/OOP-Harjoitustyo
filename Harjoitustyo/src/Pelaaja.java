@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Axel, Jonne
+ *
+ */
 import java.util.EnumMap;
 import java.util.ArrayList;
 public class Pelaaja {
@@ -62,6 +67,7 @@ public class Pelaaja {
 	 * 
 	 * @param avain Jatsiyhdistelma, jonka kohdalta haetaan tallennettu yhdistelmä
 	 * @return Yhdistelma
+	 * @throws NoPointsException, jos pisteet==null
 	 */
 	public int getPisteet(Jatsiyhdistelma avain) throws NoPointsException{
 		if(yhdistelmat.get(avain)!=null){
@@ -83,22 +89,15 @@ public class Pelaaja {
 		}
 		return sum;
 	}
-	/**
-	 * 
-	 * @param avain 
-	 * @param arvo
-	 */
+	
 	public void setPisteet(Yhdistelma y){
 		yhdistelmat.put(y.getNimi(), y.getPisteet());
 	}
 	public void printKasi(){
 		kasi.print();
 	}
-	public void unlock(){
-		kasi.unlock();
-	}
-	public void lock(int i){
-		kasi.lock(i);
+	public Jatsikasi getKasi(){
+		return kasi;
 	}
 
 }

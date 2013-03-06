@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Axel, Jonne
+ *
+ */
 import java.util.Arrays;
 import java.util.ArrayList;
 public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
@@ -152,7 +157,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	}
 	/**
 	 * Testataan, mitä yhdistelmiä löytyy
-	 * HUOM! jos löytyy kolme samaa tai neljä samaa, kaksiSamaa returns false
+	 * HUOM! jos löytyy kolme samaa tai neljä samaa, kaksiSamaa() palauttaa false
 	 * @return true=löytyi, false=ei löytynyt yhdistelmää
 	 */
 	public boolean ykkoset(){
@@ -280,7 +285,9 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
 	public void setNimi(Jatsiyhdistelma y){
 		nimi = y;
 	}
-	
+	/**
+	 * compareTo
+	 */
 	public int compareTo(Yhdistelma o) {
 		return pisteet-o.getPisteet();
 	}

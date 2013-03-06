@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Axel, Jonne
+ *
+ */
 public class Jatsikasi {
 	protected Noppa[] nopat;
 	
@@ -8,15 +12,17 @@ public class Jatsikasi {
 			nopat[i]=new Noppa();
 		}
 	}
-	public Jatsikasi(Jatsikasi k){
+	/**
+	 * Seuraavat konstruktorit vain aliluokan Yhdistelma käyttöön
+	 */
+	protected Jatsikasi(Jatsikasi k){
 		nopat = k.getNopat();
 	}
-	public Jatsikasi(Noppa[] n){
+	protected Jatsikasi(Noppa[] n){
 		nopat=n;
 	}
 	/**
 	 * heittää lukitsemattomat nopat
-	 * @param lukitut lukittujen noppien indeksit nousevassa järjestyksessä
 	 */
 	public void heita(){
 		for(int i=0; i<nopat.length; i++){
@@ -33,9 +39,16 @@ public class Jatsikasi {
 	public Noppa[] getNopat(){
 		return nopat;
 	}
+	/** Nopan lukitus 
+	 * false->true, true->false
+	 * @param ind nopan indeksi
+	 */
 	public void lock(int ind){
 		nopat[ind].lock();
 	}
+	/**
+	 * poistaa lukituksen kaikista nopista
+	 */
 	public void unlock(){
 		for(int i=0; i<5; i++){
 			nopat[i].unlock();

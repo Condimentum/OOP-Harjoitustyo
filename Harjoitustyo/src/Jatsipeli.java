@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Axel, Jonne
+ *
+ */
 import java.io.*;
 import java.util.*;
 public class Jatsipeli implements Serializable {
@@ -77,7 +82,7 @@ public class Jatsipeli implements Serializable {
 	public void Save() throws FileNotFoundException{
 		
 	}
-	/**
+	/** Main-metodi
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -93,7 +98,7 @@ public class Jatsipeli implements Serializable {
 			if(i!=0){
 				lukitut=reader.nextLine();
 				for(int j=0; j<lukitut.length(); j++){
-					p.getPelaaja(0).lock(Character.getNumericValue(lukitut.charAt(j)));
+					p.getPelaaja(0).getKasi().lock(Character.getNumericValue(lukitut.charAt(j)));
 				}
 			}
 		}

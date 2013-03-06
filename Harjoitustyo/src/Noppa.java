@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Axel, Jonne
+ *
+ */
 import java.util.Random;
 public class Noppa implements Comparable<Noppa> {
 	private int value;
@@ -14,9 +19,15 @@ public class Noppa implements Comparable<Noppa> {
 	public boolean getLukitus(){
 		return lukitus;
 	}
+	/**
+	 * set lukitus false->true, true->false
+	 */
 	public void lock(){
 		lukitus = !lukitus;
 	}
+	/**
+	 * poistaa lukituksen
+	 */
 	public void unlock(){
 		lukitus=false;
 	}
