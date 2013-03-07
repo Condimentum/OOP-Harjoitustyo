@@ -3,9 +3,10 @@
  * @author Axel, Jonne
  *
  */
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.ArrayList;
-public class Pelaaja {
+public class Pelaaja implements Serializable {
 	private String nimi;
 	private EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
 	static ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;

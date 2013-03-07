@@ -6,46 +6,47 @@
 import java.io.*;
 import java.util.*;
 public class Jatsipeli implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Pelaaja> pelaajat;
 	private FileOutputStream f_out;
 	private FileInputStream f_in;
 	private ObjectOutputStream obj_out;
 	private ObjectInputStream obj_in;
-	private File saveFile;
-	private String path;
 	
 	public Jatsipeli(){
 		pelaajat = new ArrayList<Pelaaja>();
-		path = "save.data";
 		try{
 			createSave();
 		}
 		catch(IOException e){
-			e.printStackTrace();
+			System.out.println("Penis0");
 		}
 		try{
-			f_out = new FileOutputStream(saveFile);
+			f_out = new FileOutputStream("save.data");
 		}
 		catch(FileNotFoundException e){
-			e.printStackTrace();
+			System.out.println("Penis");
 		}
 		try{
 			obj_out = new ObjectOutputStream(f_out);
 		}
 		catch(IOException e){
-			e.printStackTrace();
+			System.out.println("Penis1");
 		}
 		try {
-			f_in = new FileInputStream(saveFile);
+			f_in = new FileInputStream("save.data");
 		} 
 		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Penis2");
 		}
 		try {
 			obj_in = new ObjectInputStream (f_in);
 		} 
 		catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Penis3");
 		}
 	}
 	public void save(){
@@ -53,22 +54,23 @@ public class Jatsipeli implements Serializable {
 			obj_out.writeObject(this);
 		}
 		catch(IOException e){
-			e.printStackTrace();
+			System.out.println("Penis4");
 		}
 	}
-	public Jatsipeli load(){
+	public Jatsipeli load() throws IOException, ClassNotFoundException{
+		Object obj = obj_in.readObject();
 		Jatsipeli tmp = new Jatsipeli();
-		try {
-			tmp = (Jatsipeli)obj_in.readObject();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		if (obj instanceof Jatsipeli)
+		{
+			// Cast object to a Vector
+			tmp=(Jatsipeli)obj;
+
+			// Do something with vector....
 		}
 		return tmp;
 	}
 	private void createSave() throws IOException{
-		saveFile=new File(path);
+		File saveFile=new File("save.data");
 		if(!saveFile.exists()){
 			saveFile.createNewFile();
 		}
@@ -87,8 +89,10 @@ public class Jatsipeli implements Serializable {
 	}
 	/** Main-metodi
 	 * @param args
+	 * @throws IOException
+	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Scanner reader = new Scanner(System.in);
 		Jatsipeli game = new Jatsipeli();
 		game.addPelaaja(new Pelaaja("Janne"));
@@ -112,6 +116,7 @@ public class Jatsipeli implements Serializable {
 						game.getPelaaja(player).setPisteet(yhdistelmat.get(valinta));
 						System.out.println("Tallennettu Jatsiyhdistelmä "+yhdistelmat.get(valinta).getNimi().name()+": "+yhdistelmat.get(valinta).getPisteet());
 						reader.nextLine(); //Tarvitaan jostain syystä
+						game.save();
 					}
 					else{
 						lukitut=reader.nextLine();
@@ -142,5 +147,4 @@ public class Jatsipeli implements Serializable {
 		}
 		return true;
 	}
-
 }

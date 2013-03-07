@@ -3,9 +3,10 @@
  * @author Axel, Jonne
  *
  */
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.ArrayList;
-public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma> {
+public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma>, Serializable {
 	private int pisteet;
 	private Jatsiyhdistelma nimi;
 	

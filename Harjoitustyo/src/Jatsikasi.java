@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * 
  * @author Axel, Jonne
  *
  */
-public class Jatsikasi {
+public class Jatsikasi implements Serializable {
 	protected Noppa[] nopat;
 	
 	public Jatsikasi(){

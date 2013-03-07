@@ -3,8 +3,9 @@
  * @author Axel, Jonne
  *
  */
+import java.io.Serializable;
 import java.util.Random;
-public class Noppa implements Comparable<Noppa> {
+public class Noppa implements Comparable<Noppa>, Serializable {
 	private int value;
 	private boolean lukitus;
 	Random rnd = new Random();
