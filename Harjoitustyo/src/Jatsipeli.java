@@ -110,6 +110,10 @@ public class Jatsipeli implements Serializable {
 					System.out.println(game.getPelaaja(player).getNimi());
 					game.getPelaaja(player).printKasi();
 					if(i==1){
+						System.out.println("Pelivihko:");
+						game.getPelaaja(player).printPelivihko();
+						System.out.println("------------------------");
+						System.out.println("Mahdolliset yhdistelmät:");
 						game.getPelaaja(player).printYhdistelmat();
 						yhdistelmat=game.getPelaaja(player).mahdollisetYhdistelmat();
 						valinta=reader.nextInt();

@@ -95,7 +95,11 @@ public class Pelaaja implements Serializable {
 		}
 		return sum;
 	}
-	
+	public void printPelivihko(){
+		for(int i=0; i<15; i++){
+			System.out.println(jatsiyhdistelmat.get(i).name() + ": " + yhdistelmat.get(jatsiyhdistelmat.get(i)));
+		}
+	}
 	public void setPisteet(Yhdistelma y){
 		yhdistelmat.put(y.getNimi(), y.getPisteet());
 	}
