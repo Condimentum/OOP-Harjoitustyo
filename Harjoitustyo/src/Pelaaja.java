@@ -6,55 +6,47 @@
 import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.ArrayList;
-public class Pelaaja implements Serializable {
+public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	private String nimi;
-	private EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
 	static ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
+	private Pelivihko vihko;
 	private Jatsikasi kasi;
 	
+	/**
+	 * Oletuskonstruktori
+	 * @param n pelaajan nimi
+	 */
 	public Pelaaja(String n){
 		nimi = n;
-		yhdistelmat = new EnumMap<Jatsiyhdistelma, Integer>(Jatsiyhdistelma.class);
-		jatsiyhdistelmat = new ArrayList<Jatsiyhdistelma>();
-		jatsiyhdistelmat.add(Jatsiyhdistelma.YKKOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.KAKKOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.KOLMOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.NELOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.VIITOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.KUUTOSET);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.PARI);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.KAKSI_PARIA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.KOLME_SAMAA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.NELJA_SAMAA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.PIKKUSUORA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.ISOSUORA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.TAYSKASI);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.SATTUMA);
-		jatsiyhdistelmat.add(Jatsiyhdistelma.YATZY);
-		for(int i=0; i<jatsiyhdistelmat.size(); i++){
-			yhdistelmat.put(jatsiyhdistelmat.get(i), null);
-		}
+		vihko = new Pelivihko();
 		kasi = new Jatsikasi();
 	}
 	
+	/**
+	 * Heittää nopat
+	 */
 	public void heita(){
 		kasi.heita();
 	}
+	
+	/**
+	 * Tulostaa nopista muodostettavat yhdistelmät ja niistä saatavat pisteet, joita pelaaja ei ole vielä käyttänyt
+	 */
 	public void printYhdistelmat(){
-		Yhdistelma y = new Yhdistelma(kasi);
-		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat();
+		ArrayList<Yhdistelma> yhdistelmat = mahdollisetYhdistelmat();
 		for(int i=0; i<yhdistelmat.size(); i++){
-			if(this.yhdistelmat.get(yhdistelmat.get(i).getNimi())==null){
-				System.out.println(yhdistelmat.get(i).getNimi().name()+": "+yhdistelmat.get(i).getPisteet());
-			}
+			System.out.println(yhdistelmat.get(i).getNimi().name() + ": " + yhdistelmat.get(i).getPisteet());
 		}
 	}
 	public ArrayList<Yhdistelma> mahdollisetYhdistelmat(){
 		Yhdistelma y = new Yhdistelma(kasi);
-		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat();
-		ArrayList<Yhdistelma> toReturn = new ArrayList<Yhdistelma>();
+		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät
+		ArrayList<Yhdistelma> toReturn = new ArrayList<Yhdistelma>(); // Palautettavat yhdistelmät
 		for(int i=0; i<yhdistelmat.size(); i++){
-			if(this.yhdistelmat.get(yhdistelmat.get(i).getNimi())==null){
+			try{
+				vihko.getPisteet(yhdistelmat.get(i).getNimi()); // Kokeillaan, onko vihkoon jo asetettu yhdistelmälle pisteet
+			}
+			catch(NoPointsException e){ // Yhdistelmälle ei ole vielä asetettu pisteitä, joten lisätään yhdistelmä palautettaviin
 				toReturn.add(yhdistelmat.get(i));
 			}
 		}
@@ -66,9 +58,11 @@ public class Pelaaja implements Serializable {
 	public void setNimi(String n){
 		nimi=n;
 	}
+	/**
 	public EnumMap<Jatsiyhdistelma, Integer> getYhdistelmat(){
 		return yhdistelmat;
 	}
+	*/
 	/**
 	 * 
 	 * @param avain Jatsiyhdistelma, jonka kohdalta haetaan tallennettu yhdistelmä
@@ -76,38 +70,29 @@ public class Pelaaja implements Serializable {
 	 * @throws NoPointsException, jos pisteet==null
 	 */
 	public int getPisteet(Jatsiyhdistelma avain) throws NoPointsException{
-		if(yhdistelmat.get(avain)!=null){
-			return yhdistelmat.get(avain);
-		}
-		else{
-			throw new NoPointsException("value==null");
-		}
+		return vihko.getPisteet(avain);
 	}
+	
 	public int getPisteet(){
-		int sum=0;
-		for(int i=0; i<jatsiyhdistelmat.size(); i++){
-			try{
-				sum=sum+getPisteet(jatsiyhdistelmat.get(i));
-			}
-			catch(NoPointsException e){
-				continue;
-			}
-		}
-		return sum;
+		return vihko.getSum();
 	}
-	public void printPelivihko(){
-		for(int i=0; i<15; i++){
-			System.out.println(jatsiyhdistelmat.get(i).name() + ": " + yhdistelmat.get(jatsiyhdistelmat.get(i)));
-		}
+	public Pelivihko getVihko(){
+		return vihko;
 	}
+	/**
 	public void setPisteet(Yhdistelma y){
 		yhdistelmat.put(y.getNimi(), y.getPisteet());
 	}
+	*/
 	public void printKasi(){
 		kasi.print();
 	}
 	public Jatsikasi getKasi(){
 		return kasi;
+	}
+
+	public int compareTo(Pelaaja arg0) {
+		return vihko.compareTo(arg0.getVihko());
 	}
 
 }

@@ -8,6 +8,9 @@ import java.io.Serializable;
 public class Jatsikasi implements Serializable {
 	protected Noppa[] nopat;
 	
+	/**
+	 * Oletuskonstruktori
+	 */
 	public Jatsikasi(){
 		nopat = new Noppa[5];
 		for(int i=0; i<5; i++){
@@ -23,6 +26,7 @@ public class Jatsikasi implements Serializable {
 	protected Jatsikasi(Noppa[] n){
 		nopat=n;
 	}
+	
 	/**
 	 * heittää lukitsemattomat nopat
 	 */
@@ -33,15 +37,17 @@ public class Jatsikasi implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * Tulostaa nopat
+	 */
 	public void print(){
 		for(int i=0; i<5; i++){
 			nopat[i].print();
 		}
 		System.out.println();
 	}
-	public Noppa[] getNopat(){
-		return nopat;
-	}
+	
 	/** Nopan lukitus 
 	 * false->true, true->false
 	 * @param ind nopan indeksi
@@ -49,6 +55,7 @@ public class Jatsikasi implements Serializable {
 	public void lock(int ind){
 		nopat[ind].lock();
 	}
+	
 	/**
 	 * poistaa lukituksen kaikista nopista
 	 */
@@ -56,5 +63,13 @@ public class Jatsikasi implements Serializable {
 		for(int i=0; i<5; i++){
 			nopat[i].unlock();
 		}
+	}
+	
+	/** 
+	 * Getterit ja setterit
+	 * @return
+	 */
+	public Noppa[] getNopat(){
+		return nopat;
 	}
 }
