@@ -138,7 +138,7 @@ public class Jatsipeli implements Serializable {
 					else{
 						lukitut=reader.nextLine();
 						for(int j=0; j<lukitut.length(); j++){
-							game.getPelaaja(0).getKasi().lock(Character.getNumericValue(lukitut.charAt(j)));
+							game.getPelaaja(player).getKasi().lock(Character.getNumericValue(lukitut.charAt(j)));
 						}
 					}
 				}
