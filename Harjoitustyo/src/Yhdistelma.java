@@ -152,6 +152,12 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma>, Ser
 			a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.TAYSKASI));
 			points=0;
 		}
+		// Sattuma
+		for(int i=0; i<5; i++){
+			points=points+nopat[i].getValue();
+		}
+		a.add(new Yhdistelma(nopat, points, Jatsiyhdistelma.SATTUMA));
+		points=0;
 		if(yatzy()){
 			a.add(new Yhdistelma(nopat, 50, Jatsiyhdistelma.YATZY));
 		}
@@ -159,7 +165,6 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma>, Ser
 	}
 	/**
 	 * Testataan, mitä yhdistelmiä löytyy
-	 * HUOM! jos löytyy kolme samaa tai neljä samaa, kaksiSamaa() palauttaa false
 	 * @return true=löytyi, false=ei löytynyt yhdistelmää
 	 */
 	public boolean ykkoset(){

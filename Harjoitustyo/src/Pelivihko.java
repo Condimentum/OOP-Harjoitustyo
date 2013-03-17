@@ -53,6 +53,7 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 			if((bonus==0)){ // Jos bonusta ei ole vielä annettu
 				if(valisumma>=63){
 					bonus=50; // Annetaan bonus
+					summa=summa+50;
 				}
 			}
 		}
@@ -71,14 +72,14 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 	 */
 	public void print(){
 		for(int i=0; i<6; i++){
-			System.out.println(jatsiyhdistelmat.get(i).name() + ": " + yhdistelmat.get(jatsiyhdistelmat.get(i)));
+			System.out.println(jatsiyhdistelmat.get(i).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(i)));
 		}
 		viiva();
 		System.out.println("VÄLISUMMA: " + valisumma);
 		System.out.println("BONUS: " + bonus);
 		viiva();
 		for(int i=6; i<15; i++){
-			System.out.println(jatsiyhdistelmat.get(i).name() + ": " + yhdistelmat.get(jatsiyhdistelmat.get(i)));
+			System.out.println(jatsiyhdistelmat.get(i).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(i)));
 		}
 		viiva();
 		System.out.println("SUMMA: " + summa);

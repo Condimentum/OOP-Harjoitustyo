@@ -4,6 +4,7 @@
  *
  */
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.ArrayList;
 public class Pelaaja implements Serializable, Comparable<Pelaaja> {
@@ -20,6 +21,22 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		nimi = n;
 		vihko = new Pelivihko();
 		kasi = new Jatsikasi();
+		jatsiyhdistelmat = new ArrayList<Jatsiyhdistelma>();
+		jatsiyhdistelmat.add(Jatsiyhdistelma.YKKOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.KAKKOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.KOLMOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.NELOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.VIITOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.KUUTOSET);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.PARI);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.KAKSI_PARIA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.KOLME_SAMAA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.NELJA_SAMAA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.PIKKUSUORA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.ISOSUORA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.TAYSKASI);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.SATTUMA);
+		jatsiyhdistelmat.add(Jatsiyhdistelma.YATZY);
 	}
 	
 	/**
@@ -35,7 +52,7 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	public void printYhdistelmat(){
 		ArrayList<Yhdistelma> yhdistelmat = mahdollisetYhdistelmat();
 		for(int i=0; i<yhdistelmat.size(); i++){
-			System.out.println(yhdistelmat.get(i).getNimi().name() + ": " + yhdistelmat.get(i).getPisteet());
+			System.out.println(yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet());
 		}
 	}
 	public ArrayList<Yhdistelma> mahdollisetYhdistelmat(){
@@ -48,6 +65,39 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 			}
 			catch(NoPointsException e){ // Yhdistelmälle ei ole vielä asetettu pisteitä, joten lisätään yhdistelmä palautettaviin
 				toReturn.add(yhdistelmat.get(i));
+			}
+		}
+		Collections.sort(toReturn, Collections.reverseOrder()); // Järjestää yhdistelmät pisteiden mukaan laskevaan järjestykseen
+		return toReturn;
+	}
+	public void printYliviivattavat(){
+		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
+		for(int i=0; i<yhdistelmat.size(); i++){
+			System.out.println(yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet());
+		}
+	}
+	public ArrayList<Yhdistelma> yliviivattavat(){
+		Yhdistelma y = new Yhdistelma(kasi);
+		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät
+		ArrayList<Yhdistelma> toReturn = new ArrayList<Yhdistelma>(); // Palautettavat yhdistelmät
+		for(int i=0; i<jatsiyhdistelmat.size(); i++){ // Käydään kaikki jatsiyhdistelmät läpi
+			for(int j=0; j<yhdistelmat.size(); j++){ // Käydään kaikki kädestä saatavat yhdistelmät läpi
+				if(jatsiyhdistelmat.get(i)==yhdistelmat.get(j).getNimi()){ // Jos kädestä on mahdollista saada ko. yhdistelmä, ei lisätä palautettaviin
+					continue;
+				}
+				if(j==yhdistelmat.size()-1){ // Ollaan päästy loppuun, eli kädestä ei ole mahdollista saada ko. yhdistelmää. Lisätään palautettaviin
+					toReturn.add(new Yhdistelma(kasi.getNopat(), 0, jatsiyhdistelmat.get(i)));
+				}
+				
+			}
+		}
+		for(int i=0; i<toReturn.size(); i++){
+			try{
+				vihko.getPisteet(toReturn.get(i).getNimi()); // Kokeillaan, onko vihkoon jo asetettu yhdistelmälle pisteet
+				toReturn.remove(i); // On asetettu, joten poistetaan palautettavista
+				i--;
+			}
+			catch(NoPointsException e){ // Yhdistelmälle ei ole vielä asetettu pisteitä, joten ei tehdä mitään
 			}
 		}
 		return toReturn;

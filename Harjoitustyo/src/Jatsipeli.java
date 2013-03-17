@@ -109,12 +109,13 @@ public class Jatsipeli implements Serializable {
 		Scanner reader = new Scanner(System.in);
 		Jatsipeli game = new Jatsipeli();
 		game.addPelaaja(new Pelaaja("Janne"));
-		game.addPelaaja(new Pelaaja("Kuukupööpötin"));
+		//game.addPelaaja(new Pelaaja("Kuukupööpötin"));
 		String lukitut="";
 		int valinta;
 		ArrayList<Yhdistelma> yhdistelmat;
 		while(!game.vihkoTaynna()){ // Toistetaan, kunnes pelivihko on täynnä
 			for(int player=0; player<game.getPelaajatLkm(); player++){
+				game.getPelaaja(player).getVihko().print();
 				for(int i=3; i>0; i--){
 					System.out.println(i);
 					lukitut="";
@@ -129,7 +130,13 @@ public class Jatsipeli implements Serializable {
 						System.out.println("Mahdolliset yhdistelmät:");
 						game.getPelaaja(player).printYhdistelmat();
 						yhdistelmat=game.getPelaaja(player).mahdollisetYhdistelmat();
+						System.out.println("YLIVIIVAA");
 						valinta=reader.nextInt();
+						if(valinta==yhdistelmat.size()||yhdistelmat.isEmpty()){
+							yhdistelmat=game.getPelaaja(player).yliviivattavat();
+							game.getPelaaja(player).printYliviivattavat();
+							valinta=reader.nextInt();
+						}
 						game.getPelaaja(player).getVihko().setPisteet(yhdistelmat.get(valinta));
 						System.out.println("Tallennettu Jatsiyhdistelmä "+yhdistelmat.get(valinta).getNimi().name()+": "+yhdistelmat.get(valinta).getPisteet());
 						reader.nextLine(); //Tarvitaan jostain syystä
