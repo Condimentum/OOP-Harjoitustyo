@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.util.Random;
 import javax.imageio.*;
 
-public class Noppanäkymä extends JFrame{
+public class Noppanakyma extends JFrame{
 	private JButton nappi1;
 	private JButton nappi2;
 	private JButton nappi3;
@@ -18,9 +18,9 @@ public class Noppanäkymä extends JFrame{
 	private JLabel otsikko;
 	NoppaKuva a1;
 	
-    public Noppanäkymä() {
+    public Noppanakyma() {
     	NoppaKuva a1 = new NoppaKuva();
-    	JLabel tausta =new JLabel(new ImageIcon("C:\\Users\\Jonne\\Yliopisto\\tausta.png"));
+    	JLabel tausta =new JLabel(new ImageIcon("tausta.png"));
     	tausta.setLayout(null);
     	
     	
@@ -39,7 +39,7 @@ public class Noppanäkymä extends JFrame{
     	
     	
     	
-    	nappi1 = new JButton(new ImageIcon(a1.annaSilmä(a,0)));
+    	nappi1 = new JButton(new ImageIcon(a1.annaSilma(a,0)));
     	nappi1.setBorder(BorderFactory.createEmptyBorder());
     	nappi1.setBounds(160,475,100,100);
     	nappi1.addMouseListener(
@@ -55,12 +55,12 @@ public class Noppanäkymä extends JFrame{
 						// 0 = Vapaa : 1 = Lukittu
 						NoppaKuva q = new NoppaKuva();
 						if(p%2==0){
-						nappi1.setIcon((Icon)(new ImageIcon(q.annaSilmä(a,1))));
+						nappi1.setIcon((Icon)(new ImageIcon(q.annaSilma(a,1))));
 						p++;
 					}
 						else{
 							p++;
-							nappi1.setIcon((Icon)(new ImageIcon(q.annaSilmä(a,0))));
+							nappi1.setIcon((Icon)(new ImageIcon(q.annaSilma(a,0))));
 						}
 					}
 					public void mouseEntered(MouseEvent arg0) {	
@@ -77,7 +77,7 @@ public class Noppanäkymä extends JFrame{
     	
     	
     	
-    	nappi2 = new JButton(new ImageIcon(a1.annaSilmä(b,0)));
+    	nappi2 = new JButton(new ImageIcon(a1.annaSilma(b,0)));
     	nappi2.setBorder(BorderFactory.createEmptyBorder());
     	nappi2.setBounds(310,475,100,100);
     	nappi2.addMouseListener(
@@ -93,12 +93,12 @@ public class Noppanäkymä extends JFrame{
  						// 0 = Vapaa : 1 = Lukittu
  						NoppaKuva q = new NoppaKuva();
  						if(p%2==0){
- 						nappi2.setIcon((Icon)(new ImageIcon(q.annaSilmä(b,1))));
+ 						nappi2.setIcon((Icon)(new ImageIcon(q.annaSilma(b,1))));
  						p++;
  					}
  						else{
  							p++;
- 							nappi2.setIcon((Icon)(new ImageIcon(q.annaSilmä(b,0))));
+ 							nappi2.setIcon((Icon)(new ImageIcon(q.annaSilma(b,0))));
  						}
  					}
  					public void mouseEntered(MouseEvent arg0) {	
@@ -113,7 +113,7 @@ public class Noppanäkymä extends JFrame{
   		    );
     	
     	
-    	nappi3 = new JButton(new ImageIcon(a1.annaSilmä(c,0)));
+    	nappi3 = new JButton(new ImageIcon(a1.annaSilma(c,0)));
     	nappi3.setBorder(BorderFactory.createEmptyBorder());
     	nappi3.setBounds(460,475,100,100);
     	nappi3.addMouseListener(
@@ -129,12 +129,12 @@ public class Noppanäkymä extends JFrame{
  						// 0 = Vapaa : 1 = Lukittu
  						NoppaKuva q = new NoppaKuva();
  						if(p%2==0){
- 						nappi3.setIcon((Icon)(new ImageIcon(q.annaSilmä(c,1))));
+ 						nappi3.setIcon((Icon)(new ImageIcon(q.annaSilma(c,1))));
  						p++;
  					}
  						else{
  							p++;
- 							nappi3.setIcon((Icon)(new ImageIcon(q.annaSilmä(c,0))));
+ 							nappi3.setIcon((Icon)(new ImageIcon(q.annaSilma(c,0))));
  						}
  					}
  					public void mouseEntered(MouseEvent arg0) {	
@@ -150,7 +150,7 @@ public class Noppanäkymä extends JFrame{
     	
     	
     	
-    	nappi4 = new JButton(new ImageIcon(a1.annaSilmä(d,0)));
+    	nappi4 = new JButton(new ImageIcon(a1.annaSilma(d,0)));
     	nappi4.setBorder(BorderFactory.createEmptyBorder());
     	nappi4.setBounds(610,475,100,100);
     	nappi4.addMouseListener(
@@ -166,12 +166,12 @@ public class Noppanäkymä extends JFrame{
  						// 0 = Vapaa : 1 = Lukittu
  						NoppaKuva q = new NoppaKuva();
  						if(p%2==0){
- 						nappi4.setIcon((Icon)(new ImageIcon(q.annaSilmä(d,1))));
+ 						nappi4.setIcon((Icon)(new ImageIcon(q.annaSilma(d,1))));
  						p++;
  					}
  						else{
  							p++;
- 							nappi4.setIcon((Icon)(new ImageIcon(q.annaSilmä(d,0))));
+ 							nappi4.setIcon((Icon)(new ImageIcon(q.annaSilma(d,0))));
  						}
  					}
  					public void mouseEntered(MouseEvent arg0) {	
@@ -187,7 +187,7 @@ public class Noppanäkymä extends JFrame{
     	
     	
     	
-    	nappi5 = new JButton(new ImageIcon(a1.annaSilmä(e,0)));
+    	nappi5 = new JButton(new ImageIcon(a1.annaSilma(e,0)));
     	nappi5.setBorder(BorderFactory.createEmptyBorder());
     	nappi5.setBounds(760,475,100,100);
     	nappi5.addMouseListener(
@@ -203,12 +203,12 @@ public class Noppanäkymä extends JFrame{
  						// 0 = Vapaa : 1 = Lukittu
  						NoppaKuva q = new NoppaKuva();
  						if(p%2==0){
- 						nappi5.setIcon((Icon)(new ImageIcon(q.annaSilmä(e,1))));
+ 						nappi5.setIcon((Icon)(new ImageIcon(q.annaSilma(e,1))));
  						p++;
  					}
  						else{
  							p++;
- 							nappi5.setIcon((Icon)(new ImageIcon(q.annaSilmä(e,0))));
+ 							nappi5.setIcon((Icon)(new ImageIcon(q.annaSilma(e,0))));
  						}
  					}
  					public void mouseEntered(MouseEvent arg0) {	
@@ -248,7 +248,7 @@ public class Noppanäkymä extends JFrame{
         setResizable(true);
     }
     public static void main(String[] args) {
-        new Noppanäkymä();
+        new Noppanakyma();
     }
 
 }
