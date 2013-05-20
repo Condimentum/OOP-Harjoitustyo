@@ -17,29 +17,62 @@ public class Noppanakyma extends JFrame{
 	private JTextField kentta;
 	private JLabel otsikko;
 	NoppaKuva a1;
+	private Jatsikasi nopat;
 	
     public Noppanakyma() {
+    	nopat = new Jatsikasi();
+    	nopat.heita();
     	NoppaKuva a1 = new NoppaKuva();
     	JLabel tausta =new JLabel(new ImageIcon("tausta.png"));
     	tausta.setLayout(null);
     	
     	
     	Random rnd = new Random();
+    	/**
     	final int a = rnd.nextInt(6)+1;
     	final int b = rnd.nextInt(6)+1;
     	final int c = rnd.nextInt(6)+1;
     	final int d = rnd.nextInt(6)+1;
     	final int e = rnd.nextInt(6)+1;
+    	*/
     	
-    	vaihto = new JButton("Vaihda Noppia");
+    	vaihto = new JButton("Heita");
     	
     	
     	
     	vaihto.setBounds(435,405,150,40);
+    	vaihto.addMouseListener(
+    			
+    			
+    			new MouseListener () {
+  		    	   int p=0;
+  		        public void actionPerformed(Action tapahtuma) {
+  		        
+  		        }
+
+ 					@Override
+ 					public void mouseClicked(MouseEvent arg0) {
+ 						nopat.heita();
+ 						nappi1.setIcon((Icon)(new ImageIcon(nopat.getNopat()[0].getImage())));
+ 						nappi2.setIcon((Icon)(new ImageIcon(nopat.getNopat()[1].getImage())));
+ 						nappi3.setIcon((Icon)(new ImageIcon(nopat.getNopat()[2].getImage())));
+ 						nappi4.setIcon((Icon)(new ImageIcon(nopat.getNopat()[3].getImage())));
+ 						nappi5.setIcon((Icon)(new ImageIcon(nopat.getNopat()[4].getImage())));
+ 					}
+ 					public void mouseEntered(MouseEvent arg0) {	
+ 					}
+ 					public void mouseExited(MouseEvent arg0) {	
+ 					}
+ 					public void mousePressed(MouseEvent arg0) {	
+ 					}
+ 					public void mouseReleased(MouseEvent arg0) {
+ 					}
+  		      }
+  		    );
     	
     	
     	
-    	nappi1 = new JButton(new ImageIcon(a1.annaSilma(a,0)));
+    	nappi1 = new JButton(new ImageIcon(nopat.getNopat()[0].getImage()));
     	nappi1.setBorder(BorderFactory.createEmptyBorder());
     	nappi1.setBounds(160,475,100,100);
     	nappi1.addMouseListener(
@@ -52,16 +85,8 @@ public class Noppanakyma extends JFrame{
 
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						// 0 = Vapaa : 1 = Lukittu
-						NoppaKuva q = new NoppaKuva();
-						if(p%2==0){
-						nappi1.setIcon((Icon)(new ImageIcon(q.annaSilma(a,1))));
-						p++;
-					}
-						else{
-							p++;
-							nappi1.setIcon((Icon)(new ImageIcon(q.annaSilma(a,0))));
-						}
+						nopat.getNopat()[0].lock();
+						nappi1.setIcon((Icon)(new ImageIcon(nopat.getNopat()[0].getImage())));
 					}
 					public void mouseEntered(MouseEvent arg0) {	
 					}
@@ -77,7 +102,7 @@ public class Noppanakyma extends JFrame{
     	
     	
     	
-    	nappi2 = new JButton(new ImageIcon(a1.annaSilma(b,0)));
+    	nappi2 = new JButton(new ImageIcon(nopat.getNopat()[1].getImage()));
     	nappi2.setBorder(BorderFactory.createEmptyBorder());
     	nappi2.setBounds(310,475,100,100);
     	nappi2.addMouseListener(
@@ -90,16 +115,8 @@ public class Noppanakyma extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						// 0 = Vapaa : 1 = Lukittu
- 						NoppaKuva q = new NoppaKuva();
- 						if(p%2==0){
- 						nappi2.setIcon((Icon)(new ImageIcon(q.annaSilma(b,1))));
- 						p++;
- 					}
- 						else{
- 							p++;
- 							nappi2.setIcon((Icon)(new ImageIcon(q.annaSilma(b,0))));
- 						}
+ 						nopat.getNopat()[1].lock();
+						nappi2.setIcon((Icon)(new ImageIcon(nopat.getNopat()[1].getImage())));
  					}
  					public void mouseEntered(MouseEvent arg0) {	
  					}
@@ -113,7 +130,7 @@ public class Noppanakyma extends JFrame{
   		    );
     	
     	
-    	nappi3 = new JButton(new ImageIcon(a1.annaSilma(c,0)));
+    	nappi3 = new JButton(new ImageIcon(nopat.getNopat()[2].getImage()));
     	nappi3.setBorder(BorderFactory.createEmptyBorder());
     	nappi3.setBounds(460,475,100,100);
     	nappi3.addMouseListener(
@@ -126,16 +143,8 @@ public class Noppanakyma extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						// 0 = Vapaa : 1 = Lukittu
- 						NoppaKuva q = new NoppaKuva();
- 						if(p%2==0){
- 						nappi3.setIcon((Icon)(new ImageIcon(q.annaSilma(c,1))));
- 						p++;
- 					}
- 						else{
- 							p++;
- 							nappi3.setIcon((Icon)(new ImageIcon(q.annaSilma(c,0))));
- 						}
+ 						nopat.getNopat()[2].lock();
+						nappi3.setIcon((Icon)(new ImageIcon(nopat.getNopat()[2].getImage())));
  					}
  					public void mouseEntered(MouseEvent arg0) {	
  					}
@@ -150,7 +159,7 @@ public class Noppanakyma extends JFrame{
     	
     	
     	
-    	nappi4 = new JButton(new ImageIcon(a1.annaSilma(d,0)));
+    	nappi4 = new JButton(new ImageIcon(nopat.getNopat()[3].getImage()));
     	nappi4.setBorder(BorderFactory.createEmptyBorder());
     	nappi4.setBounds(610,475,100,100);
     	nappi4.addMouseListener(
@@ -163,16 +172,8 @@ public class Noppanakyma extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						// 0 = Vapaa : 1 = Lukittu
- 						NoppaKuva q = new NoppaKuva();
- 						if(p%2==0){
- 						nappi4.setIcon((Icon)(new ImageIcon(q.annaSilma(d,1))));
- 						p++;
- 					}
- 						else{
- 							p++;
- 							nappi4.setIcon((Icon)(new ImageIcon(q.annaSilma(d,0))));
- 						}
+ 						nopat.getNopat()[3].lock();
+						nappi4.setIcon((Icon)(new ImageIcon(nopat.getNopat()[3].getImage())));
  					}
  					public void mouseEntered(MouseEvent arg0) {	
  					}
@@ -187,7 +188,7 @@ public class Noppanakyma extends JFrame{
     	
     	
     	
-    	nappi5 = new JButton(new ImageIcon(a1.annaSilma(e,0)));
+    	nappi5 = new JButton(new ImageIcon(nopat.getNopat()[4].getImage()));
     	nappi5.setBorder(BorderFactory.createEmptyBorder());
     	nappi5.setBounds(760,475,100,100);
     	nappi5.addMouseListener(
@@ -200,16 +201,8 @@ public class Noppanakyma extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						// 0 = Vapaa : 1 = Lukittu
- 						NoppaKuva q = new NoppaKuva();
- 						if(p%2==0){
- 						nappi5.setIcon((Icon)(new ImageIcon(q.annaSilma(e,1))));
- 						p++;
- 					}
- 						else{
- 							p++;
- 							nappi5.setIcon((Icon)(new ImageIcon(q.annaSilma(e,0))));
- 						}
+ 						nopat.getNopat()[4].lock();
+						nappi5.setIcon((Icon)(new ImageIcon(nopat.getNopat()[4].getImage())));
  					}
  					public void mouseEntered(MouseEvent arg0) {	
  					}
