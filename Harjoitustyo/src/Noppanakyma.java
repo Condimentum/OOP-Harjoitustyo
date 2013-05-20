@@ -1,5 +1,16 @@
 import javax.swing.*;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color.*;
@@ -239,9 +250,23 @@ public class Noppanakyma extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(true);
+        music();
     }
     public static void main(String[] args) {
         new Noppanakyma();
+    }
+    
+    private void music(){
+    	try
+        {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File("music.wav")));
+            clip.loop(0);
+        }
+        catch (Exception exc)
+        {
+            exc.printStackTrace(System.out);
+        }
     }
 
 }
