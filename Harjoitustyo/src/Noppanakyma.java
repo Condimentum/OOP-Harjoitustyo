@@ -38,7 +38,6 @@ public class Noppanakyma extends JFrame{
     	tausta.setLayout(null);
     	
     	
-    	Random rnd = new Random();
     	/**
     	final int a = rnd.nextInt(6)+1;
     	final int b = rnd.nextInt(6)+1;
@@ -261,7 +260,7 @@ public class Noppanakyma extends JFrame{
         {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(new File("music.wav")));
-            clip.loop(0);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
         catch (Exception exc)
         {
