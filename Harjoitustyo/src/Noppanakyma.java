@@ -26,9 +26,9 @@ public class Noppanakyma extends JFrame{
 	private JButton nappi5;
 	private JButton vaihto;
 	private JTextField kentta;
-	private JTextField pelaaja1;
-	private JTextField pelaaja2;
-	private JTextField yhdistelm‰Rivi;
+	private JTextArea pelaaja1;
+	private JTextArea pelaaja2;
+	private JTextArea yhdistelm‰Rivi;
 	private JLabel otsikko;
 	NoppaKuva a1;
 	private Jatsikasi nopat;
@@ -228,17 +228,34 @@ public class Noppanakyma extends JFrame{
   		      }
   		    );
     	
-    	kentta = new JTextField("Kentta");
+    	kentta = new JTextField("Komennot");
     	kentta.setBounds(700,410,120,30);
+    	kentta.addKeyListener(new KeyListener() {
+    		public void keyPressed(KeyEvent e) {
+
+    		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
+    		System.out.println("ENTER PRESSED");
+    		yhdistelm‰Rivi.setText(kentta.getText());
+    		}
+    		}
+    		public void keyTyped(KeyEvent e) {}
+    		public void keyReleased(KeyEvent e) {}
+    		});
     	
-    	pelaaja1 = new JTextField("T‰h‰n pelaaja 1 tiedot");
+    	pelaaja1 = new JTextArea();
     	pelaaja1.setBounds(150,10,200,380);
+    	pelaaja1.setEditable(false);
+    	pelaaja1.setText("T‰h‰n pelaaja 1 tiedot");
     	
-    	pelaaja2 = new JTextField("T‰h‰n pelaaja 2 tiedot");
+    	pelaaja2 = new JTextArea();
     	pelaaja2.setBounds(380,10,200,380);
+    	pelaaja2.setEditable(false);
+    	pelaaja2.setText("T‰h‰n pelaaja 2 tiedot");
     	
-    	yhdistelm‰Rivi = new JTextField("T‰h‰n yhdistelm‰t ja niiden komennot");
+    	yhdistelm‰Rivi = new JTextArea();
     	yhdistelm‰Rivi.setBounds(680,10,220,380);
+    	yhdistelm‰Rivi.setEditable(false);
+    	yhdistelm‰Rivi.setText("T‰h‰n yhdistelm‰t ja niiden komennot");
     	
     	otsikko = new JLabel("Pelaaja1");
     	otsikko.setBounds(600,415,50,20);
