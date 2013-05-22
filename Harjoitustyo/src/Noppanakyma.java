@@ -28,7 +28,7 @@ public class Noppanakyma extends JFrame{
 	private JTextField kentta;
 	private JTextArea pelaaja1;
 	private JTextArea pelaaja2;
-	private JTextArea yhdistelm‰Rivi;
+	private JTextArea yhdistelmaRivi;
 	private JLabel otsikko;
 	NoppaKuva a1;
 	private Jatsikasi nopat;
@@ -235,7 +235,7 @@ public class Noppanakyma extends JFrame{
 
     		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
     		System.out.println("ENTER PRESSED");
-    		yhdistelm‰Rivi.setText(kentta.getText());
+    		yhdistelmaRivi.setText(kentta.getText());
     		}
     		}
     		public void keyTyped(KeyEvent e) {}
@@ -245,17 +245,17 @@ public class Noppanakyma extends JFrame{
     	pelaaja1 = new JTextArea();
     	pelaaja1.setBounds(150,10,200,380);
     	pelaaja1.setEditable(false);
-    	pelaaja1.setText("T‰h‰n pelaaja 1 tiedot");
+    	pelaaja1.setText("Muna suuhun");
     	
     	pelaaja2 = new JTextArea();
     	pelaaja2.setBounds(380,10,200,380);
     	pelaaja2.setEditable(false);
-    	pelaaja2.setText("T‰h‰n pelaaja 2 tiedot");
+    	pelaaja2.setText("Senkin homo");
     	
-    	yhdistelm‰Rivi = new JTextArea();
-    	yhdistelm‰Rivi.setBounds(680,10,220,380);
-    	yhdistelm‰Rivi.setEditable(false);
-    	yhdistelm‰Rivi.setText("T‰h‰n yhdistelm‰t ja niiden komennot");
+    	yhdistelmaRivi = new JTextArea();
+    	yhdistelmaRivi.setBounds(680,10,220,380);
+    	yhdistelmaRivi.setEditable(false);
+    	yhdistelmaRivi.setText("T√§h√§n yhdistelm√§t ja niiden komennot");
     	
     	otsikko = new JLabel("Pelaaja1");
     	otsikko.setBounds(600,415,50,20);
@@ -271,7 +271,7 @@ public class Noppanakyma extends JFrame{
     	tausta.add(kentta);
     	tausta.add(pelaaja1);
     	tausta.add(pelaaja2);
-    	tausta.add(yhdistelm‰Rivi);
+    	tausta.add(yhdistelmaRivi);
     	tausta.add(otsikko);
     	
         setTitle("Yatzi!!!");
