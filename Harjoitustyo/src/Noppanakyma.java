@@ -38,7 +38,6 @@ public class Noppanakyma extends JFrame{
     	tausta.setLayout(null);
     	
     	
-    	Random rnd = new Random();
     	/**
     	final int a = rnd.nextInt(6)+1;
     	final int b = rnd.nextInt(6)+1;
