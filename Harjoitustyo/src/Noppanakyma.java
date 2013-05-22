@@ -26,6 +26,9 @@ public class Noppanakyma extends JFrame{
 	private JButton nappi5;
 	private JButton vaihto;
 	private JTextField kentta;
+	private JTextField pelaaja1;
+	private JTextField pelaaja2;
+	private JTextField yhdistelm‰Rivi;
 	private JLabel otsikko;
 	NoppaKuva a1;
 	private Jatsikasi nopat;
@@ -226,8 +229,16 @@ public class Noppanakyma extends JFrame{
   		    );
     	
     	kentta = new JTextField("Kentta");
-    	kentta.setBounds(250,10,500,300);
+    	kentta.setBounds(700,410,120,30);
     	
+    	pelaaja1 = new JTextField("T‰h‰n pelaaja 1 tiedot");
+    	pelaaja1.setBounds(150,10,200,380);
+    	
+    	pelaaja2 = new JTextField("T‰h‰n pelaaja 2 tiedot");
+    	pelaaja2.setBounds(380,10,200,380);
+    	
+    	yhdistelm‰Rivi = new JTextField("T‰h‰n yhdistelm‰t ja niiden komennot");
+    	yhdistelm‰Rivi.setBounds(680,10,220,380);
     	
     	otsikko = new JLabel("Pelaaja1");
     	otsikko.setBounds(600,415,50,20);
@@ -241,6 +252,9 @@ public class Noppanakyma extends JFrame{
     	tausta.add(nappi5);
     	tausta.add(vaihto);
     	tausta.add(kentta);
+    	tausta.add(pelaaja1);
+    	tausta.add(pelaaja2);
+    	tausta.add(yhdistelm‰Rivi);
     	tausta.add(otsikko);
     	
         setTitle("Yatzi!!!");
