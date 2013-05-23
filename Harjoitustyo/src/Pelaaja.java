@@ -87,6 +87,18 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		
 	}
 	
+	public ArrayList<String> mahdollisetYhdistelmatTest(){
+		ArrayList<String> s = new ArrayList<String>();
+		ArrayList<Yhdistelma> y = mahdollisetYhdistelmat();
+		for(int i=0; i<y.size(); i++){
+			s.add(y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p");
+			if(i==y.size()-1){
+				s.add("yliviivaa");
+			}
+		}
+		return s;
+	}
+	
 	public void printYliviivattavat(){
 		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
 		for(int i=0; i<yhdistelmat.size(); i++){

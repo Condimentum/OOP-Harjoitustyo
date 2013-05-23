@@ -1,6 +1,7 @@
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import java.io.*;
 
@@ -86,6 +87,8 @@ public class run extends JFrame{
  							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
  						}
  						if(heitot==3){
+ 							vaihto.setText("Vaihda Pelaajaa");
+ 							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + 0);
  							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat();
  							yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
  							valinta=Integer.parseInt(kentta.getText())-1;
@@ -96,7 +99,6 @@ public class run extends JFrame{
  							else{
  								pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString());
  							}
- 							heitot=0;
  							pelaajat.get(currentPelaaja).getKasi().unlock();
  							if(currentPelaaja==1){
  								currentPelaaja=0;
@@ -104,12 +106,11 @@ public class run extends JFrame{
  							else{
  								currentPelaaja=1;
  							}
+ 							kentta.setText("");
+ 							yhdistelmaRivi.setText("Valitse:");
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi());
- 							nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
- 							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
- 							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
- 							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
- 							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
+ 							vaihto.setText("Heita");
+ 							heitot=0;
  							if(vihkoTaynna()){
  								// lentävä penis tai jotain
  							}
@@ -129,7 +130,9 @@ public class run extends JFrame{
     	
     	
     	nappi1 = new JButton(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage()));
-    	nappi1.setBorder(BorderFactory.createEmptyBorder());
+    	nappi1.setOpaque(false);
+    	nappi1.setContentAreaFilled(false);
+    	nappi1.setBorderPainted(false);
     	nappi1.setBounds(160,475,100,100);
     	nappi1.addMouseListener(
     			
@@ -161,7 +164,9 @@ public class run extends JFrame{
     	
     	
     	nappi2 = new JButton(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage()));
-    	nappi2.setBorder(BorderFactory.createEmptyBorder());
+    	nappi2.setOpaque(false);
+    	nappi2.setContentAreaFilled(false);
+    	nappi2.setBorderPainted(false);
     	nappi2.setBounds(310,475,100,100);
     	nappi2.addMouseListener(
     			
@@ -191,7 +196,9 @@ public class run extends JFrame{
     	
     	
     	nappi3 = new JButton(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage()));
-    	nappi3.setBorder(BorderFactory.createEmptyBorder());
+    	nappi3.setOpaque(false);
+    	nappi3.setContentAreaFilled(false);
+    	nappi3.setBorderPainted(false);
     	nappi3.setBounds(460,475,100,100);
     	nappi3.addMouseListener(
     			
@@ -222,7 +229,9 @@ public class run extends JFrame{
     	
     	
     	nappi4 = new JButton(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage()));
-    	nappi4.setBorder(BorderFactory.createEmptyBorder());
+    	nappi4.setOpaque(false);
+    	nappi4.setContentAreaFilled(false);
+    	nappi4.setBorderPainted(false);
     	nappi4.setBounds(610,475,100,100);
     	nappi4.addMouseListener(
     			
@@ -253,7 +262,9 @@ public class run extends JFrame{
     	
     	
     	nappi5 = new JButton(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage()));
-    	nappi5.setBorder(BorderFactory.createEmptyBorder());
+    	nappi5.setOpaque(false);
+    	nappi5.setContentAreaFilled(false);
+    	nappi5.setBorderPainted(false);
     	nappi5.setBounds(760,475,100,100);
     	nappi5.addMouseListener(
     			
@@ -338,7 +349,7 @@ public class run extends JFrame{
         setResizable(true);
         music();
     }
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         new run();
     }
     
