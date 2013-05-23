@@ -77,34 +77,30 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	public String mahdollisetYhdistelmatToString(){
 		String s="";
 		ArrayList<Yhdistelma> y = mahdollisetYhdistelmat();
+		int ind=y.size();
 		for(int i=0; i<y.size(); i++){
 			s=s+(i+1)+" - "+y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p"+"\n";
 			if(i==y.size()-1){
-				s=s+(i+2)+" - "+"yliviivaa";
+				s=s+"--------------------yliviivaa--------------------"+"\n";
 			}
+		}
+		y=yliviivattavat();
+		for(int i=0; i<y.size(); i++){
+			s=s+(ind+i+1)+" - "+y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p"+"\n";
 		}
 		return s;
 		
 	}
 	
-	public ArrayList<String> mahdollisetYhdistelmatTest(){
-		ArrayList<String> s = new ArrayList<String>();
-		ArrayList<Yhdistelma> y = mahdollisetYhdistelmat();
-		for(int i=0; i<y.size(); i++){
-			s.add(y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p");
-			if(i==y.size()-1){
-				s.add("yliviivaa");
-			}
+	public String printYliviivattavat(){
+		String s="";
+		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
+		for(int i=0; i<yhdistelmat.size(); i++){
+			s=s+(i+1)+" - "+yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet()+ "\n";
 		}
 		return s;
 	}
 	
-	public void printYliviivattavat(){
-		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
-		for(int i=0; i<yhdistelmat.size(); i++){
-			System.out.println(yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet());
-		}
-	}
 	public ArrayList<Yhdistelma> yliviivattavat(){
 		Yhdistelma y = new Yhdistelma(kasi);
 		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät

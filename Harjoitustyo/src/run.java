@@ -92,6 +92,11 @@ public class run extends JFrame{
  							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat();
  							yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
  							valinta=Integer.parseInt(kentta.getText())-1;
+ 							if(valinta==yhdistelmat.size()){
+ 								yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).printYliviivattavat());
+ 								yhdistelmat=pelaajat.get(currentPelaaja).yliviivattavat();
+ 								valinta=Integer.parseInt(kentta.getText())-1;
+ 							}
  							pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
  							if(currentPelaaja==0){
  								pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString());
@@ -302,7 +307,7 @@ public class run extends JFrame{
 
     		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
     		System.out.println("ENTER PRESSED");
-    		yhdistelmaRivi.setText(kentta.getText());
+    		yhdistelmaRivi.setText("");
     		}
     		}
     		public void keyTyped(KeyEvent e) {}
