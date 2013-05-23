@@ -86,8 +86,32 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 		viiva();
 	}
 	
+	/**
+	 * Palauttaa pelivihon String-tyyppisenä
+	 */
+	public String toString(){
+		String s ="";
+		for(int i=0; i<6; i++){
+			s=s+(jatsiyhdistelmat.get(i).name() + ":		" + yhdistelmat.get(jatsiyhdistelmat.get(i))) + "\n";
+		}
+		s=s+"-------------------------------------------------"+ "\n";
+		s=s+("VÄLISUMMA: " + valisumma)+ "\n";
+		s=s+("BONUS: " + bonus)+ "\n";
+		s=s+"-------------------------------------------------"+ "\n";
+		for(int i=6; i<8; i++){
+			s=s+(jatsiyhdistelmat.get(i).name() + ":		" + yhdistelmat.get(jatsiyhdistelmat.get(i)))+ "\n";
+		}
+		s=s+(jatsiyhdistelmat.get(8).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(8)))+ "\n";
+		for(int i=9; i<15; i++){
+			s=s+(jatsiyhdistelmat.get(i).name() + ":		" + yhdistelmat.get(jatsiyhdistelmat.get(i)))+ "\n";
+		}
+		s=s+"-------------------------------------------------"+ "\n";
+		s=s+("SUMMA: " + summa)+ "\n";
+		return s;
+	}
+	
 	private void viiva(){
-		System.out.println("---------------");
+		System.out.println("-------------------------------------------------");
 	}
 	
 	public int getSum(){

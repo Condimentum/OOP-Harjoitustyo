@@ -49,12 +49,15 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	/**
 	 * Tulostaa nopista muodostettavat yhdistelmät ja niistä saatavat pisteet, joita pelaaja ei ole vielä käyttänyt
 	 */
+	/**
 	public void printYhdistelmat(){
 		ArrayList<Yhdistelma> yhdistelmat = mahdollisetYhdistelmat();
 		for(int i=0; i<yhdistelmat.size(); i++){
 			System.out.println(yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet());
 		}
+		
 	}
+	*/
 	public ArrayList<Yhdistelma> mahdollisetYhdistelmat(){
 		Yhdistelma y = new Yhdistelma(kasi);
 		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät
@@ -70,6 +73,20 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		Collections.sort(toReturn, Collections.reverseOrder()); // Järjestää yhdistelmät pisteiden mukaan laskevaan järjestykseen
 		return toReturn;
 	}
+	
+	public String mahdollisetYhdistelmatToString(){
+		String s="";
+		ArrayList<Yhdistelma> y = mahdollisetYhdistelmat();
+		for(int i=0; i<y.size(); i++){
+			s=s+(i+1)+" - "+y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p"+"\n";
+			if(i==y.size()-1){
+				s=s+(i+2)+" - "+"yliviivaa";
+			}
+		}
+		return s;
+		
+	}
+	
 	public void printYliviivattavat(){
 		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
 		for(int i=0; i<yhdistelmat.size(); i++){
