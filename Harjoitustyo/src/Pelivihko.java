@@ -75,7 +75,7 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 			System.out.println(jatsiyhdistelmat.get(i).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(i)));
 		}
 		viiva();
-		System.out.println("VÄLISUMMA: " + valisumma);
+		System.out.println("VALISUMMA: " + valisumma);
 		System.out.println("BONUS: " + bonus);
 		viiva();
 		for(int i=6; i<15; i++){
@@ -95,7 +95,7 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 			s=s+(jatsiyhdistelmat.get(i).name() + ":		" + yhdistelmat.get(jatsiyhdistelmat.get(i))) + "\n";
 		}
 		s=s+"-------------------------------------------------"+ "\n";
-		s=s+("VÃ„LISUMMA: " + valisumma)+ "\n";
+		s=s+("VALISUMMA: " + valisumma)+ "\n";
 		s=s+("BONUS: " + bonus)+ "\n";
 		s=s+"-------------------------------------------------"+ "\n";
 		for(int i=6; i<8; i++){
