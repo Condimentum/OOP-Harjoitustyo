@@ -18,11 +18,10 @@ import javax.imageio.*;
 
 public class run extends JFrame{
 	
-	Scanner keyIn = new Scanner(System.in);
-	
 	private int heitot;
 	private ArrayList<Pelaaja> pelaajat;
 	private int currentPelaaja;
+	private Clip clip;
 	
 	private JButton nappi1;
 	private JButton nappi2;
@@ -114,6 +113,7 @@ public class run extends JFrame{
  							heitot=0;
  							if(vihkoTaynna()){
  								// lentävä penis tai jotain
+ 								clip.close();
  								music("Victory.wav");
  								System.out.println("peli loppu");
  							}
@@ -359,7 +359,7 @@ public class run extends JFrame{
 	public void music(String file){
 		try
         {
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(new File("music.wav")));
             clip.loop(0);
         }
