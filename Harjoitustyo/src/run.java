@@ -42,8 +42,8 @@ public class run extends JFrame{
 	
     public run() {
     	pelaajat = new ArrayList<Pelaaja>();
-    	pelaajat.add(new Pelaaja("Player1"));
-    	pelaajat.add(new Pelaaja("Player2"));
+    	pelaajat.add(new Pelaaja("Pelaaja 1"));
+    	pelaajat.add(new Pelaaja("Pelaaja 2"));
     	currentPelaaja=0;
     	heitot=0;
     	NoppaKuva a1 = new NoppaKuva();
@@ -89,14 +89,10 @@ public class run extends JFrame{
  						if(heitot==3){
  							vaihto.setText("Vaihda Pelaajaa");
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + 0);
- 							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat();
+ 							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat(); // Pisteitä tuottavat yhdistelmät
+ 							yhdistelmat.addAll(pelaajat.get(currentPelaaja).yliviivattavat());	// Yliviivattavat
  							yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
  							valinta=Integer.parseInt(kentta.getText())-1;
- 							if(valinta==yhdistelmat.size()){
- 								yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).printYliviivattavat());
- 								yhdistelmat=pelaajat.get(currentPelaaja).yliviivattavat();
- 								valinta=Integer.parseInt(kentta.getText())-1;
- 							}
  							pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
  							if(currentPelaaja==0){
  								pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString());
@@ -118,6 +114,7 @@ public class run extends JFrame{
  							heitot=0;
  							if(vihkoTaynna()){
  								// lentävä penis tai jotain
+ 								System.out.println("peli loppu");
  							}
  						}
  					}
@@ -307,7 +304,7 @@ public class run extends JFrame{
 
     		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
     		System.out.println("ENTER PRESSED");
-    		yhdistelmaRivi.setText("");
+    		yhdistelmaRivi.setText(kentta.getText());
     		}
     		}
     		public void keyTyped(KeyEvent e) {}
@@ -317,12 +314,12 @@ public class run extends JFrame{
     	pelaaja1 = new JTextArea();
     	pelaaja1.setBounds(150,10,200,380);
     	pelaaja1.setEditable(false);
-    	pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString());
+    	pelaaja1.setText(pelaajat.get(0).getNimi() + "\n" + "\n" + pelaajat.get(0).getVihko().toString());
     	
     	pelaaja2 = new JTextArea();
     	pelaaja2.setBounds(380,10,200,380);
     	pelaaja2.setEditable(false);
-    	pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString());
+    	pelaaja2.setText(pelaajat.get(1).getNimi() + "\n" + "\n" + pelaajat.get(1).getVihko().toString());
     	
     	yhdistelmaRivi = new JTextArea();
     	yhdistelmaRivi.setBounds(680,10,220,380);
@@ -330,7 +327,7 @@ public class run extends JFrame{
     	yhdistelmaRivi.setText("Valitse:");
 
     	otsikko = new JLabel(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
-    	otsikko.setBounds(300,415,200,20);
+    	otsikko.setBounds(250,415,200,20);
     	
     	add(tausta);
     	setLayout(new FlowLayout());
@@ -348,7 +345,7 @@ public class run extends JFrame{
     	
         setTitle("Yatzi!!!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800,800);
+        setSize(1024, 635);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(true);

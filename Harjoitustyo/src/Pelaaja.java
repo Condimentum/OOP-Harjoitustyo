@@ -81,7 +81,7 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		for(int i=0; i<y.size(); i++){
 			s=s+(i+1)+" - "+y.get(i).getNimi()+": "+y.get(i).getPisteet()+"p"+"\n";
 			if(i==y.size()-1){
-				s=s+"--------------------yliviivaa--------------------"+"\n";
+				s=s+"---------------------yliviivaa---------------------"+"\n";
 			}
 		}
 		y=yliviivattavat();
