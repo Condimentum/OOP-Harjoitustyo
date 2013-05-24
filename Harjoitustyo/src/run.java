@@ -113,6 +113,7 @@ public class run extends JFrame{
  							heitot=0;
  							if(vihkoTaynna()){
  								// lentävä penis tai jotain
+ 								clip.stop();
  								clip.close();
  								music("Victory.wav");
  								System.out.println("peli loppu");
