@@ -114,6 +114,7 @@ public class run extends JFrame{
  							heitot=0;
  							if(vihkoTaynna()){
  								// lentävä penis tai jotain
+ 								music("Victory.wav");
  								System.out.println("peli loppu");
  							}
  						}
@@ -349,13 +350,13 @@ public class run extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(true);
-        music();
+        music("music.wav");
     }
 	public static void main(String[] args) {
         new run();
     }
     
-	public void music(){
+	public void music(String file){
 		try
         {
             Clip clip = AudioSystem.getClip();
