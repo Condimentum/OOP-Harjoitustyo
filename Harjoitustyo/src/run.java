@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.awt.Color.*;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
@@ -117,6 +118,8 @@ public class run extends JFrame{
  								clip.close();
  								music("Victory.wav");
  								System.out.println("peli loppu");
+ 								Collections.sort(pelaajat, Collections.reverseOrder());
+ 								JOptionPane.showMessageDialog(null, "Voittaja on " + pelaajat.get(0).getNimi());
  							}
  						}
  					}
