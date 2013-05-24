@@ -361,7 +361,7 @@ public class run extends JFrame{
 		try
         {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File("music.wav")));
+            clip.open(AudioSystem.getAudioInputStream(new File(file)));
             clip.loop(0);
         }
         catch (Exception exc)
