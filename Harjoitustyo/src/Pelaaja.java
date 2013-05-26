@@ -5,7 +5,6 @@
  */
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.ArrayList;
 public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	private String nimi;
