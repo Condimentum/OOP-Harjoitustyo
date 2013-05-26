@@ -23,21 +23,21 @@ public class run extends JFrame{
 	private ArrayList<Pelaaja> pelaajat;
 	private int currentPelaaja;
 	private Clip clip;
-	
-	private JButton nappi1;
-	private JButton nappi2;
-	private JButton nappi3;
-	private JButton nappi4;
-	private JButton nappi5;
-	private JButton vaihto;
-	private JTextField kentta;
-	private JTextArea pelaaja1;
-	private JTextArea pelaaja2;
-	private JTextArea yhdistelmaRivi;
-	private JLabel otsikko;
-	
 	private ArrayList<Yhdistelma> yhdistelmat;
 	private int valinta;
+	
+	private JButton nappi1; // Noppa 1
+	private JButton nappi2; // Noppa 2
+	private JButton nappi3; // Noppa 3
+	private JButton nappi4; // Noppa 4
+	private JButton nappi5; // Noppa 5
+	private JButton vaihto; // Heitä noppia / vaihda pelaajaa
+	private JTextField kentta; // Käyttäjän komennot tähän
+	private JTextArea pelaaja1; // Pelivihko
+	private JTextArea pelaaja2;	 // Pelivihko
+	private JTextArea yhdistelmaRivi; // Tähän mahdolliset komennot
+	private JLabel otsikko; // Vuorossa olevan pelaajan nimi ja jäljellä olevat heitot
+	
 	
     public run() {
     	pelaajat = new ArrayList<Pelaaja>();
@@ -57,10 +57,10 @@ public class run extends JFrame{
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }
-
+  		        
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot<3){
+ 						if(heitot<3){ // Heittoja jäljellä
  							heitot++;
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
  							pelaajat.get(currentPelaaja).heita();
@@ -70,7 +70,7 @@ public class run extends JFrame{
  							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
  							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
  						}
- 						if(heitot==3){
+ 						if(heitot==3){ // Heitot käytetty
  							vaihto.setText("Vaihda Pelaajaa");
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + 0);
  							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat(); // Pisteitä tuottavat yhdistelmät
@@ -78,29 +78,25 @@ public class run extends JFrame{
  							yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
  							valinta=Integer.parseInt(kentta.getText())-1;
  							pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
- 							if(currentPelaaja==0){
- 								pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString());
- 							}
- 							else{
- 								pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString());
- 							}
- 							pelaajat.get(currentPelaaja).getKasi().unlock();
+ 							pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
+ 							pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
+ 							pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
  							if(currentPelaaja==1){
  								currentPelaaja=0;
  							}
  							else{
  								currentPelaaja=1;
  							}
- 							kentta.setText("");
+ 							kentta.setText(""); // Tyhjennetään kenttä
  							yhdistelmaRivi.setText("Valitse:");
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi());
  							vaihto.setText("Heita");
  							heitot=0;
- 							if(vihkoTaynna()){
+ 							if(vihkoTaynna()){ // Peli loppu
  								clip.stop();
  								clip.close();
  								music("Victory.wav");
- 								System.out.println("peli loppu");
+ 								System.out.println("Peli loppu");
  								Collections.sort(pelaajat, Collections.reverseOrder());
  								JOptionPane.showMessageDialog(null, "Voittaja on " + pelaajat.get(0).getNimi());
  							}
@@ -338,6 +334,10 @@ public class run extends JFrame{
         new run();
     }
     
+	/**
+	 * Soittaa musiikkia
+	 * @param file soitettavan tiedoston polku
+	 */
 	public void music(String file){
 		try
         {
@@ -350,6 +350,11 @@ public class run extends JFrame{
             exc.printStackTrace(System.out);
         }
   }
+	
+	/**
+	 * Tarkistaa onko pelaajien vihot täynnä ts. peli loppu
+	 * @return true: peli loppu false: peli jatkuu
+	 */
 	public boolean vihkoTaynna(){
 		for(int i=0; i<pelaajat.size(); i++){
 			if(!pelaajat.get(i).getVihko().full()){

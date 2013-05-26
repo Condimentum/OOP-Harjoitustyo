@@ -81,15 +81,6 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		
 	}
 	
-	public String printYliviivattavat(){
-		String s="";
-		ArrayList<Yhdistelma> yhdistelmat = yliviivattavat();
-		for(int i=0; i<yhdistelmat.size(); i++){
-			s=s+(i+1)+" - "+yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet()+ "\n";
-		}
-		return s;
-	}
-	
 	public ArrayList<Yhdistelma> yliviivattavat(){
 		Yhdistelma y = new Yhdistelma(kasi);
 		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät
