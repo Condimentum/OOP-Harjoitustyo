@@ -165,7 +165,7 @@ public class Yhdistelma extends Jatsikasi implements Comparable<Yhdistelma>, Ser
 	}
 	/**
 	 * Testataan, mitä yhdistelmiä löytyy
-	 * @return true=löytyi, false=ei löytynyt yhdistelmää
+	 * @return true: löytyi, false: ei löytynyt yhdistelmää
 	 */
 	public boolean ykkoset(){
 		if(nopat[0].getValue()==1){

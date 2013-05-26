@@ -67,27 +67,10 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 			}
 		}
 	}
-	/** 
-	 * Tulostaa pelivihon 
-	 */
-	public void print(){
-		for(int i=0; i<6; i++){
-			System.out.println(jatsiyhdistelmat.get(i).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(i)));
-		}
-		viiva();
-		System.out.println("VALISUMMA: " + valisumma);
-		System.out.println("BONUS: " + bonus);
-		viiva();
-		for(int i=6; i<15; i++){
-			System.out.println(jatsiyhdistelmat.get(i).name() + ":	" + yhdistelmat.get(jatsiyhdistelmat.get(i)));
-		}
-		viiva();
-		System.out.println("SUMMA: " + summa);
-		viiva();
-	}
 	
 	/**
 	 * Palauttaa pelivihon String-tyyppisenä
+	 * @return pelivihko
 	 */
 	public String toString(){
 		String s ="";
@@ -108,10 +91,6 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 		s=s+"-------------------------------------------------"+ "\n";
 		s=s+("SUMMA: " + summa)+ "\n";
 		return s;
-	}
-	
-	private void viiva(){
-		System.out.println("-------------------------------------------------");
 	}
 	
 	public int getSum(){

@@ -117,13 +117,6 @@ public class Noppa implements Comparable<Noppa>, Serializable {
 	}
 	
 	/**
-	 * Tulostaa nopan arvon
-	 */
-	public void print(){
-		System.out.print(value);
-	}
-	
-	/**
 	 * compareTo
 	 */
 	public int compareTo(Noppa arg0) {

@@ -35,7 +35,6 @@ public class run extends JFrame{
 	private JTextArea pelaaja2;
 	private JTextArea yhdistelmaRivi;
 	private JLabel otsikko;
-	NoppaKuva a1;
 	
 	private ArrayList<Yhdistelma> yhdistelmat;
 	private int valinta;
@@ -46,30 +45,15 @@ public class run extends JFrame{
     	pelaajat.add(new Pelaaja("Pelaaja 2"));
     	currentPelaaja=0;
     	heitot=0;
-    	NoppaKuva a1 = new NoppaKuva();
     	JLabel tausta =new JLabel(new ImageIcon("tausta.png"));
     	tausta.setLayout(null);
     	
-    	
-    	Random rnd = new Random();
-    	/**
-    	final int a = rnd.nextInt(6)+1;
-    	final int b = rnd.nextInt(6)+1;
-    	final int c = rnd.nextInt(6)+1;
-    	final int d = rnd.nextInt(6)+1;
-    	final int e = rnd.nextInt(6)+1;
-    	*/
-    	
     	vaihto = new JButton("Heita");
-    	
-    	
-    	
     	vaihto.setBounds(435,405,150,40);
     	vaihto.addMouseListener(
     			
     			
     			new MouseListener () {
-  		    	   int p=0;
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }
@@ -113,7 +97,6 @@ public class run extends JFrame{
  							vaihto.setText("Heita");
  							heitot=0;
  							if(vihkoTaynna()){
- 								// lentävä penis tai jotain
  								clip.stop();
  								clip.close();
  								music("Victory.wav");
@@ -144,7 +127,6 @@ public class run extends JFrame{
     	nappi1.addMouseListener(
     			
  		       new MouseListener () {
- 		    	   int p=0;
  		        public void actionPerformed(Action tapahtuma) {
  		        
  		        }
@@ -178,7 +160,6 @@ public class run extends JFrame{
     	nappi2.addMouseListener(
     			
   		       new MouseListener () {
-  		    	   int p=0;
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }
@@ -210,7 +191,6 @@ public class run extends JFrame{
     	nappi3.addMouseListener(
     			
   		       new MouseListener () {
-  		    	   int p=0;
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }
@@ -243,7 +223,6 @@ public class run extends JFrame{
     	nappi4.addMouseListener(
     			
   		       new MouseListener () {
-  		    	   int p=0;
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }
@@ -276,7 +255,6 @@ public class run extends JFrame{
     	nappi5.addMouseListener(
     			
   		       new MouseListener () {
-  		    	   int p=0;
   		        public void actionPerformed(Action tapahtuma) {
   		        
   		        }

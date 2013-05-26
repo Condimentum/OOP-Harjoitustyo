@@ -46,18 +46,7 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 		kasi.heita();
 	}
 	
-	/**
-	 * Tulostaa nopista muodostettavat yhdistelmät ja niistä saatavat pisteet, joita pelaaja ei ole vielä käyttänyt
-	 */
-	/**
-	public void printYhdistelmat(){
-		ArrayList<Yhdistelma> yhdistelmat = mahdollisetYhdistelmat();
-		for(int i=0; i<yhdistelmat.size(); i++){
-			System.out.println(yhdistelmat.get(i).getNimi().name() + ":	" + yhdistelmat.get(i).getPisteet());
-		}
-		
-	}
-	*/
+
 	public ArrayList<Yhdistelma> mahdollisetYhdistelmat(){
 		Yhdistelma y = new Yhdistelma(kasi);
 		ArrayList<Yhdistelma> yhdistelmat = y.getYhdistelmat(); // Kaikki kädestä saatavat yhdistelmät
@@ -133,11 +122,7 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	public void setNimi(String n){
 		nimi=n;
 	}
-	/**
-	public EnumMap<Jatsiyhdistelma, Integer> getYhdistelmat(){
-		return yhdistelmat;
-	}
-	*/
+	
 	/**
 	 * 
 	 * @param avain Jatsiyhdistelma, jonka kohdalta haetaan tallennettu yhdistelmä
@@ -154,14 +139,7 @@ public class Pelaaja implements Serializable, Comparable<Pelaaja> {
 	public Pelivihko getVihko(){
 		return vihko;
 	}
-	/**
-	public void setPisteet(Yhdistelma y){
-		yhdistelmat.put(y.getNimi(), y.getPisteet());
-	}
-	*/
-	public void printKasi(){
-		kasi.print();
-	}
+	
 	public Jatsikasi getKasi(){
 		return kasi;
 	}

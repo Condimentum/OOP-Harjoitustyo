@@ -38,15 +38,6 @@ public class Jatsikasi implements Serializable {
 		}
 	}
 	
-	/**
-	 * Tulostaa nopat
-	 */
-	public void print(){
-		for(int i=0; i<5; i++){
-			nopat[i].print();
-		}
-		System.out.println();
-	}
 	
 	/** Nopan lukitus 
 	 * false->true, true->false
@@ -66,8 +57,7 @@ public class Jatsikasi implements Serializable {
 	}
 	
 	/** 
-	 * Getterit ja setterit
-	 * @return
+	 * @return nopat
 	 */
 	public Noppa[] getNopat(){
 		return nopat;
