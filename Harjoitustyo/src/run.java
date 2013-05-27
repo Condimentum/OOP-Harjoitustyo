@@ -76,6 +76,7 @@ public class run extends JFrame{
  							heitot++;
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
  							pelaajat.get(currentPelaaja).heita();
+ 							pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
  							nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
  							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
  							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
@@ -300,7 +301,6 @@ public class run extends JFrame{
     					pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
     					pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
     					pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
-    					pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
     					lock=false;
     					System.out.println("ENTER PRESSED");
     		    		yhdistelmaRivi.setText(kentta.getText());
