@@ -25,6 +25,7 @@ public class run extends JFrame{
 	private Clip clip;
 	private ArrayList<Yhdistelma> yhdistelmat;
 	private int valinta;
+	private boolean lock;
 	
 	private JButton nappi1; // Noppa 1
 	private JButton nappi2; // Noppa 2
@@ -40,6 +41,7 @@ public class run extends JFrame{
 	
 	
     public run() {
+    	lock=true;
     	pelaajat = new ArrayList<Pelaaja>();
     	pelaajat.add(new Pelaaja("Pelaaja 1"));
     	pelaajat.add(new Pelaaja("Pelaaja 2"));
@@ -60,7 +62,7 @@ public class run extends JFrame{
   		        
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot<3){ // Heittoja jäljellä
+ 						if(heitot<2){ // Heittoja jäljellä
  							heitot++;
  							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
  							pelaajat.get(currentPelaaja).heita();
@@ -70,36 +72,45 @@ public class run extends JFrame{
  							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
  							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
  						}
- 						if(heitot==3){ // Heitot käytetty
- 							vaihto.setText("Vaihda Pelaajaa");
- 							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + 0);
+ 						else if(heitot==2){ // Viimeinen heitto
+ 							heitot++;
+ 							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
+ 							pelaajat.get(currentPelaaja).heita();
+ 							nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
+ 							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
+ 							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
+ 							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
+ 							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
+ 							vaihto.setText("Vaihda pelaajaa");
  							yhdistelmat=pelaajat.get(currentPelaaja).mahdollisetYhdistelmat(); // Pisteitä tuottavat yhdistelmät
  							yhdistelmat.addAll(pelaajat.get(currentPelaaja).yliviivattavat());	// Yliviivattavat
  							yhdistelmaRivi.setText("Valitse:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
- 							valinta=Integer.parseInt(kentta.getText())-1;
- 							pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
- 							pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
- 							pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
- 							pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
- 							if(currentPelaaja==1){
- 								currentPelaaja=0;
+ 							otsikko.setText("Syota Komento ja paina enter");
+ 						}
+ 						else { // Heitot käytetty
+ 							if(!lock){
+ 								if(currentPelaaja==1){
+ 	 								currentPelaaja=0;
+ 	 							}
+ 	 							else{
+ 	 								currentPelaaja=1;
+ 	 							}
+ 	 							kentta.setText(""); // Tyhjennetään kenttä
+ 	 							yhdistelmaRivi.setText("Valitse:");
+ 	 							heitot=0;
+ 	 							otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
+ 	 							vaihto.setText("Heita");
+ 	 							if(vihkoTaynna()){ // Peli loppu
+ 	 								clip.stop();
+ 	 								clip.close();
+ 	 								music("Victory.wav");
+ 	 								System.out.println("Peli loppu");
+ 	 								Collections.sort(pelaajat, Collections.reverseOrder());
+ 	 								JOptionPane.showMessageDialog(null, "Voittaja on " + pelaajat.get(0).getNimi());
+ 	 							}
+ 	 							lock=true;
  							}
- 							else{
- 								currentPelaaja=1;
- 							}
- 							kentta.setText(""); // Tyhjennetään kenttä
- 							yhdistelmaRivi.setText("Valitse:");
- 							otsikko.setText(pelaajat.get(currentPelaaja).getNimi());
- 							vaihto.setText("Heita");
- 							heitot=0;
- 							if(vihkoTaynna()){ // Peli loppu
- 								clip.stop();
- 								clip.close();
- 								music("Victory.wav");
- 								System.out.println("Peli loppu");
- 								Collections.sort(pelaajat, Collections.reverseOrder());
- 								JOptionPane.showMessageDialog(null, "Voittaja on " + pelaajat.get(0).getNimi());
- 							}
+ 							
  						}
  					}
  					public void mouseEntered(MouseEvent arg0) {	
@@ -284,6 +295,19 @@ public class run extends JFrame{
     		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
     		System.out.println("ENTER PRESSED");
     		yhdistelmaRivi.setText(kentta.getText());
+    		if(heitot==3){
+    			try{
+    				valinta=Integer.parseInt(kentta.getText())-1;
+    				pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
+    				pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
+    				pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
+    				pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
+    				lock=false;
+    			}
+    			catch(NumberFormatException ex){
+    				yhdistelmaRivi.setText("Annettu komento ei ollut numero:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
+    			}
+    		}
     		}
     		}
     		public void keyTyped(KeyEvent e) {}
@@ -306,7 +330,7 @@ public class run extends JFrame{
     	yhdistelmaRivi.setText("Valitse:");
 
     	otsikko = new JLabel(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
-    	otsikko.setBounds(250,415,200,20);
+    	otsikko.setBounds(200,415,250,20);
     	
     	add(tausta);
     	setLayout(new FlowLayout());
