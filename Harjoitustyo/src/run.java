@@ -293,16 +293,18 @@ public class run extends JFrame{
     		public void keyPressed(KeyEvent e) {
 
     		if(e.getKeyChar() == KeyEvent.VK_ENTER && kentta.getText().length() != 0) {
-    		System.out.println("ENTER PRESSED");
-    		yhdistelmaRivi.setText(kentta.getText());
     		if(heitot==3){
     			try{
     				valinta=Integer.parseInt(kentta.getText())-1;
-    				pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
-    				pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
-    				pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
-    				pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
-    				lock=false;
+    				if(valinta>=0 && valinta<yhdistelmat.size()){
+    					pelaajat.get(currentPelaaja).getVihko().setPisteet(yhdistelmat.get(valinta));
+    					pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
+    					pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
+    					pelaajat.get(currentPelaaja).getKasi().unlock(); // Avataan lukitus nopista
+    					lock=false;
+    					System.out.println("ENTER PRESSED");
+    		    		yhdistelmaRivi.setText(kentta.getText());
+    				}
     			}
     			catch(NumberFormatException ex){
     				yhdistelmaRivi.setText("Annettu komento ei ollut numero:"+"\n"+"\n"+pelaajat.get(currentPelaaja).mahdollisetYhdistelmatToString());
