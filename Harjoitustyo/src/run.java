@@ -141,7 +141,7 @@ public class run extends JFrame{
 
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						if(heitot!=0){
+						if(heitot!=0 && heitot!=3){
 							pelaajat.get(currentPelaaja).getKasi().getNopat()[0].lock();
 							nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
 						}
@@ -174,7 +174,7 @@ public class run extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot!=0){
+ 						if(heitot!=0 && heitot!=3){
 							pelaajat.get(currentPelaaja).getKasi().getNopat()[1].lock();
 							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
 						}
@@ -205,7 +205,7 @@ public class run extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot!=0){
+ 						if(heitot!=0 && heitot!=3){
  							pelaajat.get(currentPelaaja).getKasi().getNopat()[2].lock();
  							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
  						}
@@ -237,7 +237,7 @@ public class run extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot!=0){
+ 						if(heitot!=0 && heitot!=3){
  							pelaajat.get(currentPelaaja).getKasi().getNopat()[3].lock();
  							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
  						}
@@ -269,7 +269,7 @@ public class run extends JFrame{
 
  					@Override
  					public void mouseClicked(MouseEvent arg0) {
- 						if(heitot!=0){
+ 						if(heitot!=0 && heitot!=3){
  						pelaajat.get(currentPelaaja).getKasi().getNopat()[4].lock();
 						nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
  						}
@@ -304,6 +304,7 @@ public class run extends JFrame{
     					lock=false;
     					System.out.println("ENTER PRESSED");
     		    		yhdistelmaRivi.setText(kentta.getText());
+    		    		save();
     				}
     			}
     			catch(NumberFormatException ex){
@@ -388,6 +389,43 @@ public class run extends JFrame{
 			}
 		}
 		return true;
+	}
+	public void save(){
+		try{
+			// Create file 
+			FileWriter fstream = new FileWriter("save.txt");
+			BufferedWriter out = new BufferedWriter(fstream);
+			out.write(
+					pelaajat.get(0).getNimi() + "\n"
+					+ pelaajat.get(1).getNimi() + "\n");
+			if(currentPelaaja==0){
+				out.write(1+"\n");
+			}
+			else{
+				out.write(0+"\n");
+			}
+			out.write("\n");
+			for(int i=0; i<15; i++){
+				try{
+				out.write(Jatsiyhdistelma.values()[i].toString() + " " + pelaajat.get(0).getVihko().getPisteet(Jatsiyhdistelma.values()[i])+"\n");
+				}
+				catch(NoPointsException e){
+				}
+			}
+			out.write("\n");
+			for(int i=0; i<15; i++){
+				try{
+				out.write(Jatsiyhdistelma.values()[i].toString() + " " + pelaajat.get(1).getVihko().getPisteet(Jatsiyhdistelma.values()[i])+"\n");
+				}
+				catch(NoPointsException e){
+				}
+			}
+			//Close the output stream
+			out.close();
+		}
+		catch (Exception e){//Catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
 	}
 
 
