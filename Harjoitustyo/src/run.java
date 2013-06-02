@@ -288,7 +288,7 @@ public class run extends JFrame{
   		    );
     	
     	nappiNollaa = new JButton("Uusi peli");
-    	nappiNollaa.setBounds(920,500,90,40);
+    	nappiNollaa.setBounds(920,500,100,30);
     	nappiNollaa.addMouseListener(
     			
    			 new MouseListener () {
