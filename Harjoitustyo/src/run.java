@@ -301,8 +301,12 @@ public class run extends JFrame{
    	 						pelaajat = new ArrayList<Pelaaja>();
    	 						pelaajat.add(new Pelaaja("pelaaja1"));
    	 						pelaajat.add(new Pelaaja("pelaaja2"));
+   	 						currentPelaaja=0;
+   	 						heitot=0;
+   	 						vaihto.setText("Heita");
    	 						pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
    	 						pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
+   	 						otsikko.setText(pelaajat.get(currentPelaaja).getNimi()+"   heitot: " + (3-heitot));
    	 						nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
 							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
 							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
