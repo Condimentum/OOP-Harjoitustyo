@@ -45,6 +45,29 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 		full=false;
 	}
 	
+	public void load(Jatsiyhdistelma j, int a){
+		yhdistelmat.put(j, a);
+		// Jos yhdistelmä on jokin silmälukuyhdistelmistä, lisätään saadut pisteet välisummaan
+				if(j==Jatsiyhdistelma.YKKOSET||j==Jatsiyhdistelma.KAKKOSET||j==Jatsiyhdistelma.KOLMOSET||j==Jatsiyhdistelma.NELOSET||j==Jatsiyhdistelma.VIITOSET||j==Jatsiyhdistelma.KUUTOSET){
+					valisumma=valisumma+a;
+					if((bonus==0)){ // Jos bonusta ei ole vielä annettu
+						if(valisumma>=63){
+							bonus=50; // Annetaan bonus
+							summa=summa+50;
+						}
+					}
+				}
+				summa = summa + a;
+				for(int i=0; i<15; i++){ // Tarkistaa, onko pelivihko täynnä
+					if(yhdistelmat.get(jatsiyhdistelmat.get(i))==null){ // Ei ole täynnä
+						break;
+					}
+					if(i==14){ // On täynnä
+						full=true;
+					}
+				}
+	}
+	
 	public void setPisteet(Yhdistelma y){
 		yhdistelmat.put(y.getNimi(), y.getPisteet());
 		// Jos yhdistelmä on jokin silmälukuyhdistelmistä, lisätään saadut pisteet välisummaan

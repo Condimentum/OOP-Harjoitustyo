@@ -443,7 +443,7 @@ public class run extends JFrame{
 			sc.nextLine();
 			while(true){
 				try{
-					pelaajat.get(0).getVihko().yhdistelmat.put(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
+					pelaajat.get(0).getVihko().load(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
 				}
 					catch(IllegalArgumentException e){
 						break;
@@ -451,7 +451,7 @@ public class run extends JFrame{
 				sc.nextLine();
 			}
 			while(sc.hasNext()){
-				pelaajat.get(1).getVihko().yhdistelmat.put(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
+				pelaajat.get(1).getVihko().load(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
 				sc.nextLine();
 			}
 			System.out.println(teksti);
