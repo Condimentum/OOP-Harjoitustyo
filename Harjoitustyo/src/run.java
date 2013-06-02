@@ -47,6 +47,7 @@ public class run extends JFrame{
     	pelaajat.add(new Pelaaja("Pelaaja 2"));
     	currentPelaaja=0;
     	heitot=0;
+    	load();
     	JLabel tausta =new JLabel(new ImageIcon("tausta.png"));
     	tausta.setLayout(null);
     	
@@ -412,6 +413,7 @@ public class run extends JFrame{
 				catch(NoPointsException e){
 				}
 			}
+			out.write("stop");
 			out.write("\n");
 			for(int i=0; i<15; i++){
 				try{
@@ -426,6 +428,37 @@ public class run extends JFrame{
 		catch (Exception e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+	
+	public void load(){
+		Scanner sc;
+		try {
+			sc = new Scanner(new File("save.txt")).useDelimiter("\\s");
+			String teksti = "";
+			pelaajat.removeAll(pelaajat);
+			pelaajat.add(new Pelaaja(sc.nextLine()));
+			pelaajat.add(new Pelaaja(sc.nextLine()));
+			currentPelaaja=sc.nextInt();
+			sc.nextLine();
+			sc.nextLine();
+			while(true){
+				try{
+					pelaajat.get(0).getVihko().yhdistelmat.put(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
+				}
+					catch(IllegalArgumentException e){
+						break;
+					}
+				sc.nextLine();
+			}
+			while(sc.hasNext()){
+				pelaajat.get(1).getVihko().yhdistelmat.put(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
+				sc.nextLine();
+			}
+			System.out.println(teksti);
+			sc.close();
+		} catch (FileNotFoundException e) {
+			}
+		
 	}
 
 

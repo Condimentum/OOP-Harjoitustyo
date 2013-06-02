@@ -11,7 +11,7 @@ import java.util.EnumMap;
  *
  */
 public class Pelivihko implements Comparable<Pelivihko>, Serializable {
-	private EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
+	EnumMap<Jatsiyhdistelma, Integer> yhdistelmat;
 	static ArrayList<Jatsiyhdistelma> jatsiyhdistelmat;
 	private int valisumma;
 	private int bonus;
