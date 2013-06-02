@@ -45,6 +45,11 @@ public class Pelivihko implements Comparable<Pelivihko>, Serializable {
 		full=false;
 	}
 	
+	/**
+	 * run.java:n käyttöön, mahdollistaa pelin tilan latauksen
+	 * @param j jatsiyhdistelmän nimi
+	 * @param a pisteet
+	 */
 	public void load(Jatsiyhdistelma j, int a){
 		yhdistelmat.put(j, a);
 		// Jos yhdistelmä on jokin silmälukuyhdistelmistä, lisätään saadut pisteet välisummaan

@@ -433,9 +433,8 @@ public class run extends JFrame{
 	public void load(){
 		Scanner sc;
 		try {
-			sc = new Scanner(new File("save.txt")).useDelimiter("\\s");
-			String teksti = "";
-			pelaajat.removeAll(pelaajat);
+			sc = new Scanner(new File("save.txt")).useDelimiter("\\s"); // Luetaan tiedostosta save.txt, käytetään erottimena " "
+			pelaajat.removeAll(pelaajat); 
 			pelaajat.add(new Pelaaja(sc.nextLine()));
 			pelaajat.add(new Pelaaja(sc.nextLine()));
 			currentPelaaja=sc.nextInt();
@@ -445,7 +444,7 @@ public class run extends JFrame{
 				try{
 					pelaajat.get(0).getVihko().load(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
 				}
-					catch(IllegalArgumentException e){
+					catch(IllegalArgumentException e){ // Rivillä lukee "stop"
 						break;
 					}
 				sc.nextLine();
@@ -454,10 +453,10 @@ public class run extends JFrame{
 				pelaajat.get(1).getVihko().load(Jatsiyhdistelma.valueOf(sc.next()), sc.nextInt());
 				sc.nextLine();
 			}
-			System.out.println(teksti);
 			sc.close();
-		} catch (FileNotFoundException e) {
-			}
+		} 
+		catch (FileNotFoundException e) {
+		}
 		
 	}
 
