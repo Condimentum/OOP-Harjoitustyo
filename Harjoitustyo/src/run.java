@@ -32,6 +32,7 @@ public class run extends JFrame{
 	private JButton nappi3; // Noppa 3
 	private JButton nappi4; // Noppa 4
 	private JButton nappi5; // Noppa 5
+	private JButton nappiNollaa; // Nollaa pelin
 	private JButton vaihto; // Heitä noppia / vaihda pelaajaa
 	private JTextField kentta; // Käyttäjän komennot tähän
 	private JTextArea pelaaja1; // Pelivihko
@@ -286,6 +287,40 @@ public class run extends JFrame{
   		      }
   		    );
     	
+    	nappiNollaa = new JButton("Uusi peli");
+    	nappiNollaa.setBounds(920,500,90,40);
+    	nappiNollaa.addMouseListener(
+    			
+   			 new MouseListener () {
+   	  		        public void actionPerformed(Action tapahtuma) {
+   	  		        
+   	  		        }
+
+   	 					@Override
+   	 					public void mouseClicked(MouseEvent arg0) {
+   	 						pelaajat = new ArrayList<Pelaaja>();
+   	 						pelaajat.add(new Pelaaja("pelaaja1"));
+   	 						pelaajat.add(new Pelaaja("pelaaja2"));
+   	 						pelaaja1.setText("PELAAJA 1" + "\n" + "\n" + pelaajat.get(0).getVihko().toString()); // Päivitetään pelivihko
+   	 						pelaaja2.setText("PELAAJA 2" + "\n" + "\n" + pelaajat.get(1).getVihko().toString()); // Päivitetään pelivihko
+   	 						nappi1.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[0].getImage())));
+							nappi2.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[1].getImage())));
+							nappi3.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[2].getImage())));
+							nappi4.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[3].getImage())));
+							nappi5.setIcon((Icon)(new ImageIcon(pelaajat.get(currentPelaaja).getKasi().getNopat()[4].getImage())));
+   	 					}
+   	 					public void mouseEntered(MouseEvent arg0) {	
+   	 					}
+   	 					public void mouseExited(MouseEvent arg0) {	
+   	 					}
+   	 					public void mousePressed(MouseEvent arg0) {	
+   	 					}
+   	 					public void mouseReleased(MouseEvent arg0) {
+   	 					}
+   	  		      }
+   	  		    );
+
+    	
     	kentta = new JTextField("Kentta");
     	kentta.setBounds(250,10,500,300);
     	
@@ -343,6 +378,7 @@ public class run extends JFrame{
     	tausta.add(nappi3);
     	tausta.add(nappi4);
     	tausta.add(nappi5);
+    	tausta.add(nappiNollaa);
     	tausta.add(vaihto);
     	tausta.add(pelaaja1);
     	tausta.add(pelaaja2);
